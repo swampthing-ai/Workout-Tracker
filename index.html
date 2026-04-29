@@ -7,17 +7,68 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap');
 
+
+/* ══════════════════════════════════════════
+   TRAIN — Premium Color System
+   Dark:  Cool near-black · clean whites · slate green accent
+   Light: Pure white · deep charcoal text · hunter green accent
+   ══════════════════════════════════════════ */
+
+/* Dark Mode (default) */
 :root {
-  --bg: #080808; --s1: #111; --s2: #181818; --s3: #222;
-  --border: #252525; --border2: #2e2e2e;
-  --lime: #d4f53c; --lime-dim: rgba(212,245,60,0.12);
-  --blue: #3cf5d4; --blue-dim: rgba(60,245,212,0.1);
-  --red: #f53c3c; --red-dim: rgba(245,60,60,0.12);
-  --amber: #f5c53c; --amber-dim: rgba(245,197,60,0.12);
-  --purple: #c084fc; --purple-dim: rgba(192,132,252,0.12);
-  --text: #f0f0f0; --t2: #888; --t3: #444;
-  --radius: 14px; --radius-sm: 8px;
+  --bg:      #0e0f0f;
+  --s1:      #161818;
+  --s2:      #1d1f1f;
+  --s3:      #242727;
+  --border:  #2a2d2d;
+  --border2: #333737;
+
+  --accent:      #4a7c6f;
+  --accent-hi:   #5a9485;
+  --accent-dim:  rgba(74,124,111,0.14);
+  --accent-text: #7dbfae;
+
+  --amber:     #c98a3e;
+  --amber-dim: rgba(201,138,62,0.13);
+
+  --red:     #c0504a;
+  --red-dim: rgba(192,80,74,0.13);
+
+  --text:  #e8eaea;
+  --t2:    #7a8282;
+  --t3:    #3a3f3f;
+
+  --radius:    14px;
+  --radius-sm: 8px;
   --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --shadow: 0 1px 8px rgba(0,0,0,0.4);
+}
+
+/* Light Mode */
+[data-theme="light"] {
+  --bg:      #ffffff;
+  --s1:      #f8f8f8;
+  --s2:      #f0f1f1;
+  --s3:      #e6e8e8;
+  --border:  #e0e2e2;
+  --border2: #d0d3d3;
+
+  --accent:      #1e5244;
+  --accent-hi:   #276858;
+  --accent-dim:  rgba(30,82,68,0.08);
+  --accent-text: #1e5244;
+
+  --amber:     #a06820;
+  --amber-dim: rgba(160,104,32,0.09);
+
+  --red:     #b03030;
+  --red-dim: rgba(176,48,48,0.09);
+
+  --text:  #111414;
+  --t2:    #5a6262;
+  --t3:    #b0b8b8;
+
+  --shadow: 0 1px 6px rgba(0,0,0,0.07);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 html, body { height: 100%; overflow: hidden; }
@@ -38,14 +89,14 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
   font-family: 'Outfit', sans-serif; font-size: 9px; font-weight: 600;
   letter-spacing: 0.8px; cursor: pointer; transition: color 0.15s; text-transform: uppercase;
 }
-.nav-btn.active { color: var(--lime); }
+.nav-btn.active { color: var(--accent-text); }
 .nav-btn svg { width: 21px; height: 21px; }
 .nav-center { flex: 1; display: flex; align-items: center; justify-content: center; padding: 5px 0; }
 .fab {
-  width: 50px; height: 50px; border-radius: 50%; background: var(--lime); color: #000;
+  width: 50px; height: 50px; border-radius: 50%; background: var(--accent); color: #fff;
   border: none; cursor: pointer; font-size: 28px; font-weight: 300;
   display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 0 24px rgba(212,245,60,0.25); transition: transform 0.15s;
+  box-shadow: 0 2px 16px rgba(74,124,111,0.35); transition: transform 0.15s;
 }
 .fab:active { transform: scale(0.92); }
 
@@ -61,8 +112,8 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
   flex-shrink: 0;
 }
 #restTimerBar.active { display: flex; }
-.rtb-label { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: #000; }
-.rtb-time { font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 500; color: #000; }
+.rtb-label { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: #fff; }
+.rtb-time { font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 500; color: #fff; }
 .rtb-skip { background: rgba(0,0,0,0.15); border: none; border-radius: 6px; color: #000; font-size: 12px; font-weight: 600; padding: 5px 12px; cursor: pointer; }
 
 /* ── TODAY PAGE ── */
@@ -76,7 +127,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
   border: 1px solid var(--border2); color: var(--t2); background: var(--s2);
   transition: all 0.15s; letter-spacing: 0.2px;
 }
-.split-chip.today { background: var(--lime-dim); border-color: var(--lime); color: var(--lime); }
+.split-chip.today { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
 
 .quick-start { margin: 14px 20px 0; background: var(--s1); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; flex-shrink: 0; }
 .qs-head { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-bottom: 1px solid var(--border); }
@@ -89,12 +140,12 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
   padding: 13px 10px; cursor: pointer; transition: all 0.15s; text-align: center;
 }
 .type-card:active { transform: scale(0.97); }
-.type-card.sel { border-color: var(--lime); background: var(--lime-dim); }
+.type-card.sel { border-color: var(--accent); background: var(--accent-dim); }
 .type-card .tc-icon { font-size: 20px; margin-bottom: 5px; }
 .type-card .tc-label { font-size: 12px; font-weight: 600; color: var(--t2); line-height: 1.3; }
-.type-card.sel .tc-label { color: var(--lime); }
+.type-card.sel .tc-label { color: var(--accent); }
 .start-btn {
-  width: 100%; margin-top: 10px; padding: 14px; background: var(--lime); color: #000;
+  width: 100%; margin-top: 10px; padding: 14px; background: var(--accent); color: #fff;
   border: none; border-radius: var(--radius-sm); font-family: 'Syne', sans-serif;
   font-size: 15px; font-weight: 700; cursor: pointer; transition: opacity 0.15s;
 }
@@ -103,7 +154,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
 
 .sec-head { display: flex; align-items: center; justify-content: space-between; padding: 18px 20px 10px; }
 .sec-label { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; color: var(--t3); letter-spacing: 2px; text-transform: uppercase; }
-.sec-action { font-size: 12px; color: var(--lime); cursor: pointer; font-weight: 500; }
+.sec-action { font-size: 12px; color: var(--accent); cursor: pointer; font-weight: 500; }
 .session-list { padding: 0 20px 20px; display: flex; flex-direction: column; gap: 9px; }
 
 /* Session Row */
@@ -118,7 +169,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
 .sr-meta { font-size: 11px; color: var(--t2); margin-top: 2px; font-family: 'JetBrains Mono', monospace; }
 .sr-right { display: flex; flex-direction: column; align-items: flex-end; gap: 5px; flex-shrink: 0; }
 .sr-cal { font-size: 11px; color: var(--amber); font-family: 'JetBrains Mono', monospace; }
-.sr-vol { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--lime); }
+.sr-vol { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent-text); }
 .sr-insight { font-size: 10px; color: var(--t2); max-width: 120px; text-align: right; line-height: 1.3; margin-top: 2px; font-style: italic; }
 .del-btn { background: none; border: none; color: var(--t3); cursor: pointer; font-size: 14px; padding: 2px 4px; border-radius: 4px; }
 .del-btn:active { color: var(--red); }
@@ -133,19 +184,19 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
 .log-title-block { flex: 1; min-width: 0; }
 .log-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .log-sub { font-size: 11px; color: var(--t2); font-family: 'JetBrains Mono', monospace; margin-top: 1px; }
-.log-done-btn { background: var(--lime); color: #000; border: none; border-radius: var(--radius-sm); padding: 8px 15px; font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; flex-shrink: 0; }
+.log-done-btn { background: var(--accent); color: #fff; border: none; border-radius: var(--radius-sm); padding: 8px 15px; font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; flex-shrink: 0; }
 
 /* Vol bar */
 .vol-bar { display: flex; margin: 0 20px 14px; background: var(--s1); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; flex-shrink: 0; }
 .vb-item { flex: 1; padding: 11px 8px; text-align: center; border-right: 1px solid var(--border); }
 .vb-item:last-child { border-right: none; }
-.vb-val { font-family: 'Syne', sans-serif; font-size: 19px; font-weight: 800; color: var(--lime); line-height: 1; }
+.vb-val { font-family: 'Syne', sans-serif; font-size: 19px; font-weight: 800; color: var(--accent-text); line-height: 1; }
 .vb-lbl { font-size: 9px; color: var(--t3); text-transform: uppercase; letter-spacing: 1px; margin-top: 3px; font-weight: 600; }
 .vb-cal .vb-val { color: var(--amber); font-size: 16px; }
 
 /* Exercise cards */
 .ex-section { padding: 0 20px; }
-.ex-card { background: var(--s1); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 9px; overflow: hidden; }
+.ex-card { background: var(--s1); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 9px; overflow: hidden; box-shadow: var(--shadow); }
 .ex-head { display: flex; align-items: center; padding: 12px 13px; gap: 9px; border-bottom: 1px solid var(--border); }
 .ex-name { flex: 1; background: none; border: none; color: var(--text); font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; outline: none; min-width: 0; }
 .ex-name::placeholder { color: var(--t3); }
@@ -153,9 +204,9 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
 .ex-del { background: none; border: none; color: var(--t3); cursor: pointer; font-size: 15px; padding: 2px; flex-shrink: 0; }
 .ex-del:active { color: var(--red); }
 
-/* Ghost row — last session data */
-.ghost-row { padding: 5px 13px 6px; background: var(--s2); border-bottom: 1px solid var(--border); }
-.ghost-label { font-size: 10px; color: var(--t3); font-family: 'JetBrains Mono', monospace; letter-spacing: 0.5px; }
+/* Ghost row */
+.ghost-row { padding: 5px 13px 6px; background: var(--accent-dim); border-bottom: 1px solid var(--border); }
+.ghost-label { font-size: 10px; color: var(--accent-text); font-family: 'JetBrains Mono', monospace; letter-spacing: 0.5px; font-weight: 600; }
 .ghost-sets { font-size: 11px; color: var(--t2); font-family: 'JetBrains Mono', monospace; margin-top: 1px; }
 
 /* Sets table */
@@ -172,33 +223,33 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
 .set-del-td { width: 32px; padding: 0 6px 0 0; text-align: center; }
 .set-del { background: none; border: none; color: var(--t3); cursor: pointer; font-size: 13px; }
 .set-del:active { color: var(--red); }
-.add-set-btn { width: 100%; padding: 10px; background: none; border: none; border-top: 1px dashed var(--border2); color: var(--lime); font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Outfit', sans-serif; }
-.add-set-btn:active { background: var(--lime-dim); }
+.add-set-btn { width: 100%; padding: 10px; background: none; border: none; border-top: 1px dashed var(--border2); color: var(--accent-text); font-size: 13px; font-weight: 600; cursor: pointer; font-family: 'Outfit', sans-serif; }
+.add-set-btn:active { background: var(--accent-dim); }
 
 .add-ex-btn { width: 100%; padding: 13px; background: var(--s1); border: 1px dashed var(--border2); border-radius: var(--radius); color: var(--t2); font-size: 13px; font-weight: 500; cursor: pointer; margin-bottom: 9px; display: flex; align-items: center; justify-content: center; gap: 7px; }
-.add-ex-btn:active { border-color: var(--lime); color: var(--lime); }
+.add-ex-btn:active { border-color: var(--accent); color: var(--accent); }
 
 /* Cardio */
 .cardio-card { background: var(--s1); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 9px; overflow: hidden; }
-.cardio-head { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-bottom: 1px solid var(--border); background: var(--blue-dim); }
-.cardio-title { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--blue); }
+.cardio-head { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-bottom: 1px solid var(--border); background: var(--accent-dim); }
+.cardio-title { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--accent); }
 .cardio-tog { background: none; border: 1px solid var(--border2); border-radius: 6px; color: var(--t2); font-size: 11px; font-family: 'JetBrains Mono', monospace; padding: 4px 10px; cursor: pointer; }
 .cardio-body { padding: 13px 14px; display: flex; flex-direction: column; gap: 11px; }
 .cardio-pills { display: flex; gap: 6px; flex-wrap: wrap; }
 .cpill { padding: 6px 13px; border-radius: 20px; border: 1px solid var(--border2); background: var(--s2); color: var(--t2); font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.15s; }
-.cpill.sel { background: var(--blue-dim); border-color: var(--blue); color: var(--blue); }
+.cpill.sel { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
 .cardio-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
 .mfield { display: flex; flex-direction: column; gap: 5px; }
 .mlabel { font-size: 10px; font-weight: 700; color: var(--t3); text-transform: uppercase; letter-spacing: 1px; }
 .mwrap { position: relative; }
 .minput { width: 100%; background: var(--s2); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 500; padding: 10px 11px; outline: none; transition: border-color 0.15s; -webkit-appearance: none; }
-.minput:focus { border-color: var(--blue); }
+.minput:focus { border-color: var(--accent); }
 .munit { position: absolute; right: 9px; top: 50%; transform: translateY(-50%); font-size: 10px; color: var(--t3); font-family: 'JetBrains Mono', monospace; pointer-events: none; }
-.pace-card { background: var(--blue-dim); border: 1px solid rgba(60,245,212,0.2); border-radius: var(--radius-sm); padding: 11px 14px; display: flex; align-items: center; justify-content: space-between; }
-.pace-lbl { font-size: 11px; color: var(--blue); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
-.pace-val { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; color: var(--blue); }
+.pace-card { background: var(--accent-dim); border: 1px solid rgba(74,124,111,0.25); border-radius: var(--radius-sm); padding: 11px 14px; display: flex; align-items: center; justify-content: space-between; }
+.pace-lbl { font-size: 11px; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+.pace-val { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; color: var(--accent); }
 .pace-unit { font-size: 10px; color: var(--t2); font-family: 'JetBrains Mono', monospace; }
-.cardio-cal-card { background: var(--amber-dim); border: 1px solid rgba(245,197,60,0.2); border-radius: var(--radius-sm); padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; }
+.cardio-cal-card { background: var(--amber-dim); border: 1px solid rgba(201,138,62,0.22); border-radius: var(--radius-sm); padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; }
 .cc-lbl { font-size: 11px; color: var(--amber); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
 .cc-val { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; color: var(--amber); }
 
@@ -210,23 +261,23 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
 /* ── BODY PAGE ── */
 .body-scroll { padding: 20px; display: flex; flex-direction: column; gap: 14px; }
 .body-profile-card { background: var(--s1); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; display: flex; align-items: center; gap: 16px; }
-.bpc-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--lime-dim); border: 2px solid var(--lime); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+.bpc-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--accent-dim); border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
 .bpc-info { flex: 1; }
 .bpc-name { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 800; }
 .bpc-stats { font-size: 12px; color: var(--t2); font-family: 'JetBrains Mono', monospace; margin-top: 3px; }
 .bpc-bmi { text-align: right; }
-.bpc-bmi-val { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; color: var(--lime); }
+.bpc-bmi-val { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; color: var(--accent); }
 .bpc-bmi-lbl { font-size: 10px; color: var(--t3); text-transform: uppercase; letter-spacing: 1px; }
 
-.log-stat-btn { width: 100%; padding: 14px; background: var(--lime); color: #000; border: none; border-radius: var(--radius-sm); font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; }
+.log-stat-btn { width: 100%; padding: 14px; background: var(--accent); color: #000; border: none; border-radius: var(--radius-sm); font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; }
 
 .stat-form { background: var(--s1); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; display: flex; flex-direction: column; gap: 12px; }
 .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
 .stat-field { display: flex; flex-direction: column; gap: 5px; }
 .stat-label { font-size: 10px; font-weight: 700; color: var(--t3); text-transform: uppercase; letter-spacing: 1px; }
 .stat-input { background: var(--s2); border: 1px solid var(--border2); border-radius: var(--radius-sm); color: var(--text); font-family: 'JetBrains Mono', monospace; font-size: 16px; padding: 10px 11px; outline: none; -webkit-appearance: none; width: 100%; }
-.stat-input:focus { border-color: var(--lime); }
-.stat-save-btn { width: 100%; padding: 12px; background: var(--s2); border: 1px solid var(--border2); border-radius: var(--radius-sm); color: var(--lime); font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; }
+.stat-input:focus { border-color: var(--accent); }
+.stat-save-btn { width: 100%; padding: 12px; background: var(--s2); border: 1px solid var(--border2); border-radius: var(--radius-sm); color: var(--accent); font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; }
 
 .body-history { display: flex; flex-direction: column; gap: 8px; }
 .body-entry { background: var(--s1); border: 1px solid var(--border); border-radius: var(--radius); padding: 13px 14px; display: flex; align-items: center; gap: 12px; }
@@ -246,14 +297,14 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
 .tool-body { padding: 14px 16px; display: flex; flex-direction: column; gap: 12px; }
 .plates-input-row { display: flex; gap: 9px; align-items: flex-end; }
 .plates-inp { flex: 1; background: var(--s2); border: 1px solid var(--border2); border-radius: var(--radius-sm); color: var(--text); font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 500; padding: 11px 13px; outline: none; -webkit-appearance: none; }
-.plates-inp:focus { border-color: var(--lime); }
-.plates-calc-btn { background: var(--lime); color: #000; border: none; border-radius: var(--radius-sm); padding: 11px 16px; font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+.plates-inp:focus { border-color: var(--accent); }
+.plates-calc-btn { background: var(--accent); color: #000; border: none; border-radius: var(--radius-sm); padding: 11px 16px; font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; white-space: nowrap; }
 .bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
 .bar-label { font-size: 11px; color: var(--t2); font-family: 'JetBrains Mono', monospace; }
 .plates-result { background: var(--s2); border-radius: var(--radius-sm); padding: 13px 14px; }
 .pr-header { font-size: 11px; color: var(--t3); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-bottom: 10px; font-family: 'JetBrains Mono', monospace; }
 .plates-visual { display: flex; align-items: center; gap: 3px; flex-wrap: wrap; }
-.plate { border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; font-family: 'JetBrains Mono', monospace; color: #000; }
+.plate { border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; font-family: 'JetBrains Mono', monospace; color: #fff; }
 .bar-vis { background: var(--t3); height: 8px; width: 30px; border-radius: 2px; }
 .plates-list { margin-top: 10px; font-size: 13px; color: var(--text); font-family: 'JetBrains Mono', monospace; line-height: 1.8; }
 
@@ -262,7 +313,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
 .stat-hero { background: var(--s1); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px; display: flex; }
 .shi { flex: 1; text-align: center; border-right: 1px solid var(--border); padding: 0 8px; }
 .shi:last-child { border-right: none; }
-.shi-val { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; color: var(--lime); line-height: 1; }
+.shi-val { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; color: var(--accent-text); line-height: 1; }
 .shi-lbl { font-size: 9px; color: var(--t3); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-top: 4px; }
 .ss-title { font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; color: var(--t3); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 9px; }
 .breakdown-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
@@ -270,7 +321,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
 .bc-lbl { font-size: 10px; color: var(--t3); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
 .bc-val { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; line-height: 1; }
 .bc-sub { font-size: 11px; color: var(--t2); margin-top: 3px; font-family: 'JetBrains Mono', monospace; }
-.lime { color: var(--lime); } .blue { color: var(--blue); } .amber { color: var(--amber); }
+.lime { color: var(--accent); } .blue { color: var(--accent); } .amber { color: var(--amber); }
 
 /* ── AI PAGE ── */
 .ai-scroll { padding: 20px; display: flex; flex-direction: column; gap: 11px; }
@@ -280,21 +331,21 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
 .ai-sub { font-size: 12px; color: var(--t2); }
 .chips { display: flex; flex-wrap: wrap; gap: 7px; }
 .chip { padding: 7px 13px; border-radius: 20px; border: 1px solid var(--border2); background: var(--s2); color: var(--t2); font-size: 12px; cursor: pointer; transition: all 0.15s; font-weight: 500; }
-.chip:active { border-color: var(--lime); color: var(--lime); background: var(--lime-dim); }
+.chip:active { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
 .ai-input-card { background: var(--s1); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
 .ai-ta { width: 100%; background: none; border: none; color: var(--text); font-family: 'Outfit', sans-serif; font-size: 15px; padding: 15px; outline: none; resize: none; min-height: 85px; }
 .ai-ta::placeholder { color: var(--t3); }
 .ai-send-row { display: flex; justify-content: flex-end; padding: 9px 13px; border-top: 1px solid var(--border); }
-.ai-send { background: var(--lime); color: #000; border: none; border-radius: var(--radius-sm); padding: 9px 18px; font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; }
+.ai-send { background: var(--accent); color: #000; border: none; border-radius: var(--radius-sm); padding: 9px 18px; font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; }
 .ai-send:disabled { opacity: 0.3; cursor: not-allowed; }
 .ai-resp-card { background: var(--s1); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; min-height: 80px; }
-.ai-resp-lbl { font-size: 9px; font-weight: 700; color: var(--lime); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 9px; font-family: 'JetBrains Mono', monospace; }
+.ai-resp-lbl { font-size: 9px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 9px; font-family: 'JetBrains Mono', monospace; }
 .ai-resp-text { font-size: 14px; line-height: 1.7; color: #ccc; }
 .ai-ph { color: var(--t3); font-style: italic; font-size: 13px; }
 
 /* Loading */
 .dots { display: flex; gap: 5px; align-items: center; padding: 4px 0; }
-.dots span { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); display: inline-block; animation: ld 1.2s infinite; }
+.dots span { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); display: inline-block; animation: ld 1.2s infinite; }
 .dots span:nth-child(2) { animation-delay: 0.2s; }
 .dots span:nth-child(3) { animation-delay: 0.4s; }
 @keyframes ld { 0%,80%,100%{transform:scale(0.6);opacity:0.3} 40%{transform:scale(1);opacity:1} }
@@ -312,9 +363,9 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
 .is-val { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; }
 .is-lbl { font-size: 9px; color: var(--t3); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-top: 3px; }
 .insight-ai-box { background: var(--s2); border-radius: var(--radius-sm); padding: 14px; margin-bottom: 16px; min-height: 80px; }
-.iab-label { font-size: 10px; font-weight: 700; color: var(--lime); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; font-family: 'JetBrains Mono', monospace; }
+.iab-label { font-size: 10px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; font-family: 'JetBrains Mono', monospace; }
 .iab-text { font-size: 14px; line-height: 1.6; color: #ccc; }
-.sheet-close { width: 100%; padding: 14px; background: var(--lime); color: #000; border: none; border-radius: var(--radius-sm); font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; }
+.sheet-close { width: 100%; padding: 14px; background: var(--accent); color: #000; border: none; border-radius: var(--radius-sm); font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; }
 
 /* ── Modal ── */
 .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 400; display: none; align-items: flex-end; justify-content: center; }
@@ -326,7 +377,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
 .m-select, .m-input { width: 100%; background: var(--s2); border: 1px solid var(--border2); border-radius: var(--radius-sm); color: var(--text); font-family: 'Outfit', sans-serif; font-size: 15px; padding: 11px 13px; outline: none; -webkit-appearance: none; }
 .m-actions { display: flex; gap: 9px; margin-top: 16px; }
 .m-cancel { flex: 1; padding: 12px; background: var(--s2); border: 1px solid var(--border2); border-radius: var(--radius-sm); color: var(--t2); font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; }
-.m-confirm { flex: 2; padding: 12px; background: var(--lime); border: none; border-radius: var(--radius-sm); color: #000; font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; }
+.m-confirm { flex: 2; padding: 12px; background: var(--accent); border: none; border-radius: var(--radius-sm); color: #000; font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 3px; }
@@ -347,7 +398,10 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
 <!-- TODAY -->
 <div class="page active" id="page-today">
   <div class="today-header">
-    <div class="today-greeting">Ready to train,</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
+      <div class="today-greeting">Ready to train,</div>
+      <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">☀️ Light</button>
+    </div>
     <div class="today-date" id="todayDate">—</div>
     <div class="split-row" id="splitRow"></div>
   </div>
@@ -432,10 +486,6 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
       <div class="bpc-info">
         <div class="bpc-name">Your Stats</div>
         <div class="bpc-stats" id="profileStats">6'5" · 237 lbs · 38 yrs</div>
-      </div>
-      <div class="bpc-bmi">
-        <div class="bpc-bmi-val" id="bmiVal">—</div>
-        <div class="bpc-bmi-lbl">BMI</div>
       </div>
     </div>
     <button class="log-stat-btn" onclick="toggleStatForm()">+ Log Body Stats</button>
@@ -581,6 +631,16 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
 
 <script>
 // ══════════════════════════════════════════════════════
+// THEME
+// ══════════════════════════════════════════════════════
+let isDark = true;
+function toggleTheme() {
+  isDark = !isDark;
+  document.documentElement.setAttribute('data-theme', isDark ? '' : 'light');
+  document.getElementById('themeBtn').textContent = isDark ? '☀️ Light' : '🌙 Dark';
+}
+
+// ══════════════════════════════════════════════════════
 // CONSTANTS
 // ══════════════════════════════════════════════════════
 const USER = { heightIn: 77, weightLbs: 237, age: 38, name: 'Athlete' };
@@ -598,6 +658,30 @@ const CARDIO_TYPES = ['Walk','Run','Hike','Peloton','Cycling','Rowing','Elliptic
 // MET values for calorie calculation
 const CARDIO_MET = { Walk:3.5, Run:9.8, Hike:6.0, Peloton:8.5, Cycling:7.5, Rowing:7.0, Elliptical:5.0, Other:5.0 };
 const LIFTING_MET = { 'Chest & Triceps':5.0, 'Back & Biceps':5.0, 'Legs':6.0, 'Shoulders':4.5, default:5.0 };
+
+// Exercise input modes: 'bb' = barbell (total weight), 'db' = dumbbell (per DB × 2), 'timed' = weight + seconds
+const EX_TYPE = {
+  // Chest & Triceps
+  'Flat DB Bench':'db', 'Incline DB Bench':'db', 'Flat DB Fly':'db', 'DB Fly (Flat)':'db',
+  'Incline DB Fly':'db', 'OH DB Triceps Ext':'db', 'Overhead DB Extension':'db',
+  'Rope Pushdowns':'bb', 'Single Arm Pushdowns':'db',
+  // Back & Biceps
+  'Lat Pulldown':'bb', 'Seated Cable Row':'bb', 'Underhand Barbell Row':'bb',
+  'Straight-Arm Pulldown':'bb', 'EZ-Bar Curl':'bb', 'Incline DB Curl':'db',
+  "Farmer's Carry":'timed', 'Back Extensions':'bb',
+  // Legs
+  'DB RDL':'db', 'Leg Press':'bb', 'Seated Leg Curl':'bb', 'Leg Extension':'bb',
+  'Abductor':'bb', 'Adductor':'bb',
+  // Shoulders
+  'Neutral Grip Machine Press':'bb', 'Seated DB Shoulder Press':'db', 'Arnold Press':'db',
+  'DB Lateral Raise':'db', 'Cable Lateral Raise (L/R)':'bb',
+  'Reverse Pec Deck':'bb', 'Rear Delt Fly':'db',
+};
+
+// MET per exercise type for better calorie estimates
+const EX_MET = { bb: 5.0, db: 5.0, timed: 8.0 };
+
+function getExType(name) { return EX_TYPE[name] || 'bb'; }
 
 const TEMPLATES = {
   'Chest & Triceps': ['Flat DB Bench','Incline DB Bench','Flat DB Fly','Incline DB Fly','OH DB Triceps Ext','Rope Pushdowns','Single Arm Pushdowns'],
@@ -657,29 +741,55 @@ function getTodayType() {
 
 function typeInfo(t) { return SESSION_TYPES.find(x=>x.key===t)||{icon:'💪',color:'bg-chest',day:''}; }
 
-// Volume helpers
-function sVol(s) { return s.exercises.reduce((t,e)=>t+e.sets.reduce((st,set)=>st+(set.w||0)*(set.r||0),0),0); }
-function sSets(s) { return s.exercises.reduce((t,e)=>t+e.sets.length,0); }
-function sReps(s) { return s.exercises.reduce((t,e)=>t+e.sets.reduce((st,set)=>st+(set.r||0),0),0); }
+// Volume helpers — DB exercises multiply by 2 (both dumbbells), timed use weight × duration_min
+function exSetVol(set, exType) {
+  if (exType === 'timed') {
+    return (set.w || 0) * ((set.t || 0) / 60); // weight × minutes
+  }
+  const mult = exType === 'db' ? 2 : 1;
+  return (set.w || 0) * (set.r || 0) * mult;
+}
+function exVol(ex) {
+  const t = ex.exType || getExType(ex.name);
+  return ex.sets.reduce((sum, set) => sum + exSetVol(set, t), 0);
+}
+function sVol(s) { return s.exercises.reduce((t,e) => t + exVol(e), 0); }
+function sSets(s) { return s.exercises.reduce((t,e) => t + e.sets.length, 0); }
+function sReps(s) {
+  return s.exercises.reduce((t,e) => {
+    const typ = e.exType || getExType(e.name);
+    return t + e.sets.reduce((st,set) => st + (typ === 'timed' ? 0 : (set.r||0)), 0);
+  }, 0);
+}
 
 // Calorie estimation using MET formula
 // Calories = MET × weight(kg) × duration(hrs)
-function estLiftingCal(type, durationMin) {
-  const met = LIFTING_MET[type] || LIFTING_MET.default;
+function estLiftingCal(s) {
+  // Per-exercise estimate based on actual sets and exercise type
   const kg = USER.weightLbs * 0.453592;
-  return Math.round(met * kg * (durationMin / 60));
+  let total = 0;
+  for (const ex of s.exercises) {
+    if (ex.sets.length === 0) continue;
+    const typ = ex.exType || getExType(ex.name);
+    const met = EX_MET[typ] || 5.0;
+    // Estimate ~2 min per set (work + partial rest at MET intensity)
+    const durMin = ex.sets.length * 2;
+    total += met * kg * (durMin / 60);
+  }
+  return Math.round(total);
 }
+
 function estCardioCal(type, durationMin) {
   const met = CARDIO_MET[type] || 5.0;
   const kg = USER.weightLbs * 0.453592;
   return Math.round(met * kg * (durationMin / 60));
 }
+
 function sessionCalories(s) {
-  // Estimate ~60 min for lifting sessions if no explicit duration
-  const liftingMin = s.type === 'Cardio' ? 0 : 60;
-  const liftCal = liftingMin > 0 ? estLiftingCal(s.type, liftingMin) : 0;
-  const cardioCal = (s.cardio && s.cardio.type && s.cardio.duration)
-    ? estCardioCal(s.cardio.type, s.cardio.duration) : 0;
+  const liftCal = (s.type !== 'Cardio' && sSets(s) > 0) ? estLiftingCal(s) : 0;
+  const activities = Array.isArray(s.cardio) ? s.cardio : (s.cardio && s.cardio.type ? [s.cardio] : []);
+  const cardioCal = activities.reduce((t, c) =>
+    t + (c.type && c.duration ? estCardioCal(c.type, c.duration) : 0), 0);
   return liftCal + cardioCal;
 }
 
@@ -700,7 +810,7 @@ function seed() {
         {id:'e5',name:'Overhead DB Extension',sets:[{w:65,r:10},{w:65,r:12},{w:65,r:8}]},
         {id:'e6',name:'Rope Pushdowns',sets:[{w:70,r:11},{w:70,r:10},{w:70,r:10},{w:50,r:7}]},
         {id:'e7',name:'Single Arm Pushdowns',sets:[{w:30,r:11},{w:40,r:9},{w:40,r:6},{w:20,r:12}]},
-      ], cardio:{} },
+      ], cardio:[] },
     { id:'s2', type:'Back & Biceps', date:'2026-04-21', notes:'',
       exercises:[
         {id:'e1',name:'Lat Pulldown',sets:[{w:170,r:10},{w:175,r:7},{w:175,r:6}]},
@@ -710,7 +820,7 @@ function seed() {
         {id:'e5',name:'EZ-Bar Curl',sets:[{w:70,r:10},{w:70,r:10},{w:70,r:9}]},
         {id:'e6',name:'Incline DB Curl',sets:[{w:25,r:10},{w:25,r:8},{w:25,r:8}]},
         {id:'e7',name:"Farmer's Carry",sets:[]},
-      ], cardio:{} },
+      ], cardio:[] },
     { id:'s3', type:'Legs', date:'2026-04-24', notes:'Strong hamstring progression. Quad peaked 205x10.',
       exercises:[
         {id:'e1',name:'DB RDL',sets:[{w:50,r:10},{w:60,r:10},{w:60,r:10},{w:70,r:7}]},
@@ -719,7 +829,7 @@ function seed() {
         {id:'e4',name:'Leg Extension',sets:[{w:170,r:12},{w:185,r:10},{w:195,r:12},{w:205,r:10},{w:155,r:10}]},
         {id:'e5',name:'Abductor',sets:[{w:120,r:10},{w:120,r:12},{w:120,r:10}]},
         {id:'e6',name:'Adductor',sets:[{w:120,r:10},{w:120,r:10},{w:120,r:7}]},
-      ], cardio:{} },
+      ], cardio:[] },
     { id:'s4', type:'Shoulders', date:'2026-04-25', notes:'',
       exercises:[
         {id:'e1',name:'Neutral Grip Machine Press',sets:[{w:118,r:10},{w:158,r:10},{w:158,r:10},{w:158,r:11}]},
@@ -729,7 +839,7 @@ function seed() {
         {id:'e5',name:'Cable Lateral Raise (L/R)',sets:[{w:20,r:10},{w:20,r:10},{w:20,r:10}]},
         {id:'e6',name:'Reverse Pec Deck',sets:[{w:70,r:10},{w:70,r:13},{w:70,r:13}]},
         {id:'e7',name:'Rear Delt Fly',sets:[{w:25,r:12},{w:25,r:13},{w:25,r:15}]},
-      ], cardio:{} },
+      ], cardio:[] },
     { id:'s5', type:'Chest & Triceps', date:'2026-04-27', notes:'Strong triceps. Ready to load up.',
       exercises:[
         {id:'e1',name:'Flat DB Bench',sets:[{w:50,r:12},{w:70,r:9},{w:70,r:7},{w:70,r:10}]},
@@ -739,7 +849,7 @@ function seed() {
         {id:'e5',name:'OH DB Triceps Ext',sets:[{w:65,r:13},{w:70,r:10},{w:70,r:10}]},
         {id:'e6',name:'Rope Pushdowns',sets:[{w:70,r:12},{w:80,r:8},{w:80,r:9}]},
         {id:'e7',name:'Single Arm Pushdowns',sets:[{w:30,r:10},{w:40,r:10},{w:40,r:10}]},
-      ], cardio:{type:'Walk',duration:60,distance:4,unit:'miles'} },
+      ], cardio:[{id:'c1',type:'Walk',duration:60,distance:4,unit:'miles',pace:'15:00'}] },
     { id:'s6', type:'Back & Biceps', date:'2026-04-28', notes:'Started too light. Go 155-160 next. Add Back Extensions.',
       exercises:[
         {id:'e1',name:'Lat Pulldown',sets:[{w:150,r:10},{w:150,r:9},{w:150,r:9}]},
@@ -749,7 +859,7 @@ function seed() {
         {id:'e5',name:'EZ-Bar Curl',sets:[{w:50,r:15},{w:60,r:12},{w:70,r:10}]},
         {id:'e6',name:'Incline DB Curl',sets:[{w:25,r:10},{w:25,r:9},{w:25,r:9}]},
         {id:'e7',name:"Farmer's Carry",sets:[]},
-      ], cardio:{} },
+      ], cardio:[] },
   ];
   save();
 }
@@ -855,7 +965,7 @@ function startSession() {
   const session = {
     id:'s'+Date.now(), type:selectedType, date, notes:'',
     exercises:(TEMPLATES[selectedType]||[]).map(name=>({id:uid(),name,sets:[]})),
-    cardio:{}
+    cardio:[]
   };
   data.sessions.push(session);
   save();
@@ -870,15 +980,17 @@ function sessionRowHTML(s) {
   const vol = sVol(s);
   const sets = sSets(s);
   const cal = sessionCalories(s);
-  const hasCardio = s.cardio && s.cardio.type;
-  const cardioStr = hasCardio ? ` · ${s.cardio.type}${s.cardio.distance?' '+s.cardio.distance+'mi':''}` : '';
+  const activities = Array.isArray(s.cardio) ? s.cardio : (s.cardio && s.cardio.type ? [s.cardio] : []);
+  const cardioStr = activities.length > 0
+    ? ' · ' + activities.map(c => `${c.type||''}${c.distance?' '+c.distance+'mi':''}`).join(', ')
+    : '';
   const insight = s.aiInsight ? `<div class="sr-insight">${s.aiInsight.slice(0,60)}…</div>` : '';
   return `
   <div class="session-row" onclick="openLog('${s.id}')">
     <div class="sr-icon ${info.color}">${info.icon}</div>
     <div class="sr-body">
       <div class="sr-type">${s.type}</div>
-      <div class="sr-meta">${fmtDate(s.date)} · ${sets} sets${cardioStr}</div>
+      <div class="sr-meta">${fmtDate(s.date)} · ${sets > 0 ? sets+' sets' : ''}${cardioStr}</div>
     </div>
     <div class="sr-right">
       ${vol>0?`<div class="sr-vol">${fmtVol(vol)} lbs</div>`:''}
@@ -917,8 +1029,30 @@ function renderLog() {
   document.getElementById('logTitle').textContent = s.type;
   document.getElementById('logSub').textContent = fmtDate(s.date);
   document.getElementById('sessionNotes').value = s.notes||'';
+
+  const isCardio = s.type === 'Cardio';
+  const exSection = document.getElementById('exSection');
+  const addExBtn = exSection.nextElementSibling;
+  exSection.style.display = isCardio ? 'none' : 'block';
+  addExBtn.style.display = isCardio ? 'none' : 'block';
+
+  // Hide lifting stats from vol bar on cardio sessions
+  ['vb-sets','vb-reps','vb-vol'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.closest('.vb-item').style.display = isCardio ? 'none' : '';
+  });
+
+  // Migrate old single-object cardio to array
+  if (!Array.isArray(s.cardio)) {
+    s.cardio = (s.cardio && s.cardio.type) ? [{...s.cardio, id: uid()}] : [];
+  }
+  if (isCardio && s.cardio.length === 0) {
+    s.cardio.push({ id: uid(), type: 'Walk' });
+    save();
+  }
+
   renderVolBar(s);
-  renderExercises(s);
+  if (!isCardio) renderExercises(s);
   renderCardioSection(s);
 }
 
@@ -936,43 +1070,89 @@ function renderExercises(s) {
 }
 
 function exCardHTML(s, ex, lastSession) {
-  // Find matching exercise in last session for ghost data
+  const typ = ex.exType || getExType(ex.name);
+  if (!ex.exType) { ex.exType = typ; }
+
   const lastEx = lastSession ? lastSession.exercises.find(e => e.name.toLowerCase() === ex.name.toLowerCase()) : null;
   const ghostHTML = lastEx && lastEx.sets.length > 0 ? `
     <div class="ghost-row">
       <div class="ghost-label">LAST TIME</div>
-      <div class="ghost-sets">${lastEx.sets.map(st=>`${st.w}×${st.r}`).join('  ·  ')}</div>
+      <div class="ghost-sets">${lastEx.sets.map(st => {
+        const lt = lastEx.exType || getExType(lastEx.name);
+        if (lt === 'timed') return `${st.w||'?'}lbs × ${st.t||'?'}s`;
+        return `${st.w||'?'}×${st.r||'?'}${lt==='db'?' (per DB)':''}`;
+      }).join('  ·  ')}</div>
     </div>` : '';
 
-  const vol = ex.sets.reduce((t,set)=>t+(set.w||0)*(set.r||0),0);
-  const setRows = ex.sets.map((set,si) => `
-    <tr class="set-row">
+  const isTimed = typ === 'timed';
+  const isDB = typ === 'db';
+  const vol = exVol(ex);
+
+  const setRows = ex.sets.map((set, si) => {
+    const sv = exSetVol(set, typ);
+    if (isTimed) {
+      return `<tr class="set-row">
+        <td class="set-num">${si+1}</td>
+        <td><input class="set-inp" type="number" min="0" step="2.5" placeholder="lbs"
+          value="${set.w||''}" inputmode="decimal"
+          onchange="updateSet('${s.id}','${ex.id}',${si},'w',this.value)"></td>
+        <td><input class="set-inp" type="number" min="0" step="5" placeholder="sec"
+          value="${set.t||''}" inputmode="numeric"
+          onchange="updateSet('${s.id}','${ex.id}',${si},'t',this.value)"></td>
+        <td class="set-vol-td">${set.t ? set.t+'s' : '—'}</td>
+        <td class="set-del-td"><button class="set-del" onclick="delSet('${s.id}','${ex.id}',${si})">−</button></td>
+      </tr>`;
+    }
+    return `<tr class="set-row">
       <td class="set-num">${si+1}</td>
-      <td><input class="set-inp" type="number" min="0" step="0.5" placeholder="lbs"
+      <td><input class="set-inp" type="number" min="0" step="2.5"
+        placeholder="${isDB?'per DB':'lbs'}"
         value="${set.w||''}" inputmode="decimal"
         onchange="updateSet('${s.id}','${ex.id}',${si},'w',this.value)"></td>
       <td><input class="set-inp" type="number" min="0" placeholder="reps"
         value="${set.r||''}" inputmode="numeric"
         onchange="updateSet('${s.id}','${ex.id}',${si},'r',this.value)"></td>
-      <td class="set-vol-td">${set.w&&set.r?fmtVol(set.w*set.r):'—'}</td>
+      <td class="set-vol-td">${sv > 0 ? fmtVol(Math.round(sv)) : '—'}</td>
       <td class="set-del-td"><button class="set-del" onclick="delSet('${s.id}','${ex.id}',${si})">−</button></td>
-    </tr>`).join('');
+    </tr>`;
+  }).join('');
+
+  const typeBtn = (k, label) => `<button onclick="setExType('${s.id}','${ex.id}','${k}')"
+    style="padding:3px 9px;border-radius:5px;font-size:10px;font-weight:700;cursor:pointer;letter-spacing:0.5px;
+      border:1px solid ${typ===k?'var(--accent)':'var(--border2)'};
+      background:${typ===k?'var(--accent-dim)':'transparent'};
+      color:${typ===k?'var(--accent-text)':'var(--t3)'};
+      font-family:'JetBrains Mono',monospace">${label}</button>`;
+
+  const thead = isTimed
+    ? `<tr><th style="width:28px">#</th><th>Weight</th><th>Seconds</th><th style="text-align:right">Dur</th><th style="width:28px"></th></tr>`
+    : `<tr><th style="width:28px">#</th><th>${isDB?'Per DB':'Weight'}</th><th>Reps</th><th style="text-align:right">${isDB?'Total Vol':'Vol'}</th><th style="width:28px"></th></tr>`;
 
   return `
   <div class="ex-card" id="ec-${ex.id}">
     <div class="ex-head">
       <input class="ex-name" value="${ex.name}" placeholder="Exercise name"
         onchange="updateExName('${s.id}','${ex.id}',this.value)">
-      ${vol>0?`<span class="ex-vol-badge">${fmtVol(vol)} lbs</span>`:''}
+      ${vol>0?`<span class="ex-vol-badge">${fmtVol(Math.round(vol))} lbs</span>`:''}
+      <div style="display:flex;gap:3px;flex-shrink:0">${typeBtn('bb','Bar')}${typeBtn('db','DB')}${typeBtn('timed','⏱')}</div>
       <button class="ex-del" onclick="removeEx('${s.id}','${ex.id}')">✕</button>
     </div>
+    ${isDB ? `<div style="padding:4px 13px;background:var(--accent-dim);font-size:10px;color:var(--accent-text);font-family:'JetBrains Mono',monospace;letter-spacing:0.3px">Enter weight per dumbbell — total volume uses both sides</div>` : ''}
     ${ghostHTML}
     <table class="sets-tbl">
-      <thead><tr><th style="width:28px">#</th><th>Weight</th><th>Reps</th><th style="text-align:right">Vol</th><th style="width:28px"></th></tr></thead>
+      <thead>${thead}</thead>
       <tbody>${setRows}</tbody>
     </table>
     <button class="add-set-btn" onclick="addSet('${s.id}','${ex.id}')">+ Add Set</button>
   </div>`;
+}
+
+function setExType(sid, eid, newType) {
+  const s = data.sessions.find(x=>x.id===sid);
+  const ex = s && s.exercises.find(e=>e.id===eid);
+  if (!ex) return;
+  ex.exType = newType;
+  save(); renderExercises(s); renderVolBar(s);
 }
 
 function addExercise() {
@@ -1004,13 +1184,20 @@ function addSet(sid,eid) {
   const ex = s && s.exercises.find(e=>e.id===eid);
   if (!ex) return;
   const last = ex.sets[ex.sets.length-1];
-  ex.sets.push({w:last?last.w:null, r:null});
+  const typ = ex.exType || getExType(ex.name);
+  ex.sets.push({ w: last ? last.w : null, r: null, t: null });
   save(); renderExercises(s); renderVolBar(s);
   setTimeout(()=>{
     const card = document.getElementById('ec-'+eid);
-    if(!card) return;
-    const inputs = card.querySelectorAll('input[placeholder="lbs"]');
-    if(inputs.length) inputs[inputs.length-1].focus();
+    if (!card) return;
+    const inputs = card.querySelectorAll('.set-inp');
+    // Focus the weight input of the last row
+    const rows = card.querySelectorAll('.set-row');
+    if (rows.length) {
+      const lastRow = rows[rows.length-1];
+      const inp = lastRow.querySelector('.set-inp');
+      if (inp) inp.focus();
+    }
   }, 50);
 }
 
@@ -1031,91 +1218,151 @@ function updateSet(sid,eid,si,field,val) {
   renderVolBar(s);
   // Update vol cell inline
   const set = ex.sets[si];
-  const vol = set.w&&set.r ? set.w*set.r : null;
+  const typ = ex.exType || getExType(ex.name);
+  const sv = exSetVol(set, typ);
   const card = document.getElementById('ec-'+eid);
   if (card) {
     const rows = card.querySelectorAll('.set-row');
-    if (rows[si]) { const vc = rows[si].querySelector('.set-vol-td'); if(vc) vc.textContent = vol ? fmtVol(vol) : '—'; }
+    if (rows[si]) {
+      const vc = rows[si].querySelector('.set-vol-td');
+      if (vc) {
+        if (typ === 'timed') vc.textContent = set.t ? set.t+'s' : '—';
+        else vc.textContent = sv > 0 ? fmtVol(Math.round(sv)) : '—';
+      }
+    }
     const badge = card.querySelector('.ex-vol-badge');
-    const exVol = ex.sets.reduce((t,st)=>t+(st.w||0)*(st.r||0),0);
-    if (badge) badge.textContent = exVol>0 ? fmtVol(exVol)+' lbs' : '';
+    const ev = exVol(ex);
+    if (badge) badge.textContent = ev > 0 ? fmtVol(Math.round(ev))+' lbs' : '';
   }
-  // Start rest timer after logging a set (both fields filled)
-  if (field==='r' && val && ex.sets[si].w) {
+  // Start rest timer after completing a set
+  if ((field==='r' && val && set.w) || (field==='t' && val)) {
     startRestTimer(getRestTime(ex.name));
   }
 }
 
 // ══════════════════════════════════════════════════════
-// CARDIO
+// CARDIO — multi-activity
 // ══════════════════════════════════════════════════════
 function renderCardioSection(s) {
-  const c = s.cardio||{};
-  const has = !!c.type;
-  document.getElementById('cardioTog').textContent = has ? 'Remove' : 'Add';
-  document.getElementById('cardioBody').style.display = has ? 'flex' : 'none';
-  document.getElementById('cardioPills').innerHTML = CARDIO_TYPES.map(t=>
-    `<div class="cpill ${c.type===t?'sel':''}" onclick="setCardioType('${t}')">${t}</div>`).join('');
-  document.getElementById('cDur').value = c.duration||'';
-  document.getElementById('cDist').value = c.distance||'';
-  document.getElementById('cCal').value = c.calories||'';
-  document.getElementById('cElev').value = c.elevation||'';
-  document.getElementById('cNotes').value = c.notes||'';
-  onCardioChange();
+  const isCardio = s.type === 'Cardio';
+  const activities = Array.isArray(s.cardio) ? s.cardio : [];
+
+  // Build header toggle — hide for cardio-only (always shown)
+  document.getElementById('cardioTog').textContent = activities.length > 0 ? 'Remove All' : 'Add';
+  document.getElementById('cardioTog').style.display = isCardio ? 'none' : 'block';
+  document.getElementById('cardioBody').style.display = (isCardio || activities.length > 0) ? 'flex' : 'none';
+
+  // Render each activity card + an Add Activity button
+  document.getElementById('cardioBody').innerHTML = `
+    ${activities.map((c, i) => cardioActivityHTML(s, c, i)).join('')}
+    <button class="add-set-btn" style="border-top:1px dashed var(--border2);border-radius:0 0 var(--radius) var(--radius)" onclick="addCardioActivity('${s.id}')">+ Add Activity</button>
+    <div>
+      <div class="mlabel" style="margin-bottom:5px">Session Notes</div>
+      <textarea class="notes-field" id="sessionNotes" placeholder="Overall feel, RPE, things to improve..." onchange="updateSessionNotes('${s.id}',this.value)">${s.notes||''}</textarea>
+    </div>
+  `;
+}
+
+function cardioActivityHTML(s, c, index) {
+  const pace = computePaceVal(c.duration, c.distance);
+  const cal = (c.type && c.duration) ? estCardioCal(c.type, c.duration) : 0;
+  return `
+  <div class="ex-card" style="margin-bottom:0;border-radius:var(--radius);overflow:hidden">
+    <div class="ex-head" style="background:var(--accent-dim)">
+      <div class="cardio-title" style="flex:1">🏃 Activity ${index + 1}</div>
+      <button class="ex-del" onclick="removeCardioActivity('${s.id}','${c.id}')">✕</button>
+    </div>
+    <div style="padding:12px 14px;display:flex;flex-direction:column;gap:10px">
+      <div class="cardio-pills">
+        ${CARDIO_TYPES.map(t => `<div class="cpill ${c.type===t?'sel':''}" onclick="setCardioActivityType('${s.id}','${c.id}','${t}')">${t}</div>`).join('')}
+      </div>
+      <div class="cardio-metrics">
+        <div class="mfield"><div class="mlabel">Duration</div>
+          <div class="mwrap"><input class="minput" type="number" placeholder="0" min="0" value="${c.duration||''}"
+            inputmode="decimal" oninput="updateCardioField('${s.id}','${c.id}','duration',this.value)">
+            <span class="munit">min</span></div></div>
+        <div class="mfield"><div class="mlabel">Distance</div>
+          <div class="mwrap"><input class="minput" type="number" placeholder="0.0" min="0" step="0.01" value="${c.distance||''}"
+            inputmode="decimal" oninput="updateCardioField('${s.id}','${c.id}','distance',this.value)">
+            <span class="munit">mi</span></div></div>
+        <div class="mfield"><div class="mlabel">Calories</div>
+          <div class="mwrap"><input class="minput" type="number" placeholder="0" min="0" value="${c.calories||''}"
+            inputmode="numeric" oninput="updateCardioField('${s.id}','${c.id}','calories',this.value)">
+            <span class="munit">cal</span></div></div>
+        <div class="mfield"><div class="mlabel">Elevation</div>
+          <div class="mwrap"><input class="minput" type="number" placeholder="0" min="0" value="${c.elevation||''}"
+            inputmode="numeric" oninput="updateCardioField('${s.id}','${c.id}','elevation',this.value)">
+            <span class="munit">ft</span></div></div>
+      </div>
+      ${pace ? `<div class="pace-card"><div class="pace-lbl">Avg Pace</div><div style="text-align:right"><div class="pace-val">${pace}</div><div class="pace-unit">min / mile</div></div></div>` : ''}
+      ${cal > 0 ? `<div class="cardio-cal-card"><div class="cc-lbl">Est. Calories</div><div class="cc-val">~${cal} cal</div></div>` : ''}
+      <div class="mfield"><div class="mlabel">Notes</div>
+        <textarea class="notes-field" style="min-height:50px" placeholder="Route, HR zone, how you felt..."
+          oninput="updateCardioField('${s.id}','${c.id}','notes',this.value)">${c.notes||''}</textarea></div>
+    </div>
+  </div>`;
+}
+
+function computePaceVal(duration, distance) {
+  const dur = parseFloat(duration), dist = parseFloat(distance);
+  if (!dur || !dist || dist === 0) return null;
+  const pMin = dur / dist;
+  const pm = Math.floor(pMin), ps = Math.round((pMin - pm) * 60);
+  return `${pm}:${ps.toString().padStart(2,'0')}`;
+}
+
+function addCardioActivity(sid) {
+  const s = data.sessions.find(x=>x.id===sid);
+  if (!s) return;
+  if (!Array.isArray(s.cardio)) s.cardio = [];
+  s.cardio.push({ id: uid(), type: 'Walk' });
+  save(); renderCardioSection(s); renderVolBar(s);
+}
+
+function removeCardioActivity(sid, cid) {
+  const s = data.sessions.find(x=>x.id===sid);
+  if (!s || !Array.isArray(s.cardio)) return;
+  s.cardio = s.cardio.filter(c => c.id !== cid);
+  // For cardio-only sessions, keep at least one empty if all removed
+  if (s.type === 'Cardio' && s.cardio.length === 0) s.cardio.push({ id: uid(), type: 'Walk' });
+  save(); renderCardioSection(s); renderVolBar(s);
+}
+
+function setCardioActivityType(sid, cid, type) {
+  const s = data.sessions.find(x=>x.id===sid);
+  if (!s || !Array.isArray(s.cardio)) return;
+  const c = s.cardio.find(x=>x.id===cid);
+  if (c) { c.type = type; save(); renderCardioSection(s); renderVolBar(s); }
+}
+
+function updateCardioField(sid, cid, field, val) {
+  const s = data.sessions.find(x=>x.id===sid);
+  if (!s || !Array.isArray(s.cardio)) return;
+  const c = s.cardio.find(x=>x.id===cid);
+  if (!c) return;
+  c[field] = (field === 'notes') ? val : (val ? parseFloat(val) : null);
+  if (field === 'duration' || field === 'distance') {
+    c.pace = computePaceVal(c.duration, c.distance);
+  }
+  save(); renderCardioSection(s); renderVolBar(s);
+}
+
+function updateSessionNotes(sid, val) {
+  const s = data.sessions.find(x=>x.id===sid);
+  if (s) { s.notes = val; save(); }
 }
 
 function toggleCardio() {
   const s = data.sessions.find(x=>x.id===activeId);
   if (!s) return;
-  s.cardio = s.cardio&&s.cardio.type ? {} : {type:'Walk'};
+  if (!Array.isArray(s.cardio)) s.cardio = [];
+  if (s.cardio.length > 0) { s.cardio = []; } else { s.cardio.push({ id: uid(), type: 'Walk' }); }
   save(); renderCardioSection(s); renderVolBar(s);
 }
 
-function setCardioType(type) {
-  const s = data.sessions.find(x=>x.id===activeId);
-  if(!s) return;
-  if(!s.cardio) s.cardio={};
-  s.cardio.type = type;
-  save();
-  document.querySelectorAll('.cpill').forEach(p=>p.classList.toggle('sel',p.textContent.trim()===type));
-  onCardioChange();
-}
-
-function onCardioChange() {
-  const dur = parseFloat(document.getElementById('cDur').value)||0;
-  const dist = parseFloat(document.getElementById('cDist').value)||0;
-  const s = data.sessions.find(x=>x.id===activeId);
-  const cType = s&&s.cardio ? s.cardio.type : null;
-
-  // Pace
-  const paceCard = document.getElementById('paceCard');
-  if (dur>0 && dist>0) {
-    const pMin = dur/dist;
-    const pm = Math.floor(pMin), ps = Math.round((pMin-pm)*60);
-    document.getElementById('paceVal').textContent = `${pm}:${ps.toString().padStart(2,'0')}`;
-    paceCard.style.display = 'flex';
-    if (s&&s.cardio) s.cardio.pace = `${pm}:${ps.toString().padStart(2,'0')}`;
-  } else {
-    paceCard.style.display = 'none';
-  }
-
-  // Calorie estimate
-  const calCard = document.getElementById('cardioCal');
-  if (dur>0 && cType) {
-    const cal = estCardioCal(cType, dur);
-    document.getElementById('cardioCalVal').textContent = `~${cal} cal`;
-    calCard.style.display = 'flex';
-  } else {
-    calCard.style.display = 'none';
-  }
-
-  if (s&&s.cardio) {
-    if(dur) s.cardio.duration=dur;
-    if(dist) s.cardio.distance=dist;
-    save();
-  }
-  if (s) renderVolBar(s);
-}
+// Legacy stubs — no longer used but kept to avoid reference errors
+function setCardioType() {}
+function onCardioChange() {}
 
 // ══════════════════════════════════════════════════════
 // SAVE + POST-SESSION INSIGHT
@@ -1123,18 +1370,9 @@ function onCardioChange() {
 function saveAndExit() {
   const s = data.sessions.find(x=>x.id===activeId);
   if (s) {
-    s.notes = document.getElementById('sessionNotes').value;
-    if (s.cardio&&s.cardio.type) {
-      const dur=document.getElementById('cDur').value;
-      const dist=document.getElementById('cDist').value;
-      const cal=document.getElementById('cCal').value;
-      const elev=document.getElementById('cElev').value;
-      s.cardio.notes=document.getElementById('cNotes').value;
-      if(dur) s.cardio.duration=parseFloat(dur);
-      if(dist) s.cardio.distance=parseFloat(dist);
-      if(cal) s.cardio.calories=parseInt(cal);
-      if(elev) s.cardio.elevation=parseInt(elev);
-    }
+    // Notes already saved inline via updateSessionNotes; grab from DOM as fallback
+    const notesEl = document.getElementById('sessionNotes');
+    if (notesEl) s.notes = notesEl.value;
     save();
     stopRestTimer();
     showInsight(s);
@@ -1153,10 +1391,10 @@ function showInsight(s) {
   document.getElementById('insightTitle').textContent = `${s.type} Complete 🎯`;
   document.getElementById('insightSub').textContent = `${fmtDate(s.date)} · Great work`;
   document.getElementById('insightStats').innerHTML = `
-    <div class="is-card"><div class="is-val lime">${sets}</div><div class="is-lbl">Sets</div></div>
-    <div class="is-card"><div class="is-val" style="color:var(--lime)">${fmtVol(vol)}</div><div class="is-lbl">lbs</div></div>
-    <div class="is-card"><div class="is-val amber">${cal>0?'~'+cal:'—'}</div><div class="is-lbl">Cal 🔥</div></div>
-    ${liftCal>0&&cardioCal>0?`<div class="is-card" style="grid-column:1/2"><div class="is-val amber" style="font-size:15px">${liftCal}</div><div class="is-lbl">Lifting cal</div></div><div class="is-card" style="grid-column:2/3"><div class="is-val" style="color:var(--blue);font-size:15px">${cardioCal}</div><div class="is-lbl">Cardio cal</div></div>`:''}
+    <div class="is-card"><div class="is-val" style="color:var(--accent)">${sets}</div><div class="is-lbl">Sets</div></div>
+    <div class="is-card"><div class="is-val" style="color:var(--accent)">${fmtVol(vol)}</div><div class="is-lbl">lbs</div></div>
+    <div class="is-card"><div class="is-val" style="color:var(--amber)">${cal>0?'~'+cal:'—'}</div><div class="is-lbl">Cal 🔥</div></div>
+    ${liftCal>0&&cardioCal>0?`<div class="is-card" style="grid-column:1/2"><div class="is-val" style="color:var(--amber)" style="font-size:15px">${liftCal}</div><div class="is-lbl">Lifting cal</div></div><div class="is-card" style="grid-column:2/3"><div class="is-val" style="color:var(--accent);font-size:15px">${cardioCal}</div><div class="is-lbl">Cardio cal</div></div>`:''}
   `;
   document.getElementById('insightAI').innerHTML = '<div class="dots"><span></span><span></span><span></span></div>';
   document.getElementById('insightOverlay').classList.add('open');
@@ -1264,7 +1502,7 @@ function renderStats() {
               <div style="font-size:10px;color:var(--t2);font-family:'JetBrains Mono',monospace;margin-top:2px">${d.count} sessions · ${d.sets} sets</div>
             </div>
             <div style="text-align:right">
-              <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--lime)">${fmtVol(d.vol)} lbs</div>
+              <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:800;color:var(--accent)">${fmtVol(d.vol)} lbs</div>
               <div style="font-size:10px;color:var(--amber)">🔥 ~${d.cal} cal</div>
             </div>
           </div>`;
@@ -1281,9 +1519,6 @@ function renderStats() {
 // BODY STATS
 // ══════════════════════════════════════════════════════
 function renderBody() {
-  // BMI: weight(lbs) / (height(in))² × 703
-  const bmi = (USER.weightLbs / (USER.heightIn * USER.heightIn) * 703).toFixed(1);
-  document.getElementById('bmiVal').textContent = bmi;
   document.getElementById('profileStats').textContent = `6'5" · 237 lbs · 38 yrs`;
 
   const entries = [...(data.bodyStats||[])].sort((a,b)=>b.date.localeCompare(a.date));
@@ -1295,7 +1530,7 @@ function renderBody() {
   bh.innerHTML = entries.map((e,i) => {
     const prev = entries[i+1];
     const weightDiff = prev&&e.weight&&prev.weight ? (e.weight-prev.weight).toFixed(1) : null;
-    const wdStr = weightDiff ? ` <span style="color:${+weightDiff<0?'var(--lime)':'var(--red)'}">${+weightDiff>0?'+':''}${weightDiff}</span>` : '';
+    const wdStr = weightDiff ? ` <span style="color:${+weightDiff<0?'var(--accent)':'var(--red)'}">${+weightDiff>0?'+':''}${weightDiff}</span>` : '';
     const metrics = [
       e.weight ? {v:e.weight+wdStr, l:'lbs'} : null,
       e.bf ? {v:e.bf+'%', l:'body fat'} : null,
@@ -1408,12 +1643,18 @@ function buildContext() {
     ctx += `${s.type} — ${fmtDate(s.date)} | ${sSets(s)} sets | ${fmtVol(sVol(s))} lbs | ~${sessionCalories(s)} cal\n`;
     for (const ex of s.exercises) {
       if (!ex.sets.length) continue;
-      ctx += `  ${ex.name}: ${ex.sets.map(st=>`${st.w||'?'}×${st.r||'?'}`).join(', ')}\n`;
+      const typ = ex.exType || getExType(ex.name);
+      const setsStr = ex.sets.map(st => {
+        if (typ === 'timed') return `${st.w||'?'}lbs×${st.t||'?'}s`;
+        return `${st.w||'?'}×${st.r||'?'}${typ==='db'?' (per DB)':''}`;
+      }).join(', ');
+      const vol = exVol(ex);
+      ctx += `  ${ex.name} [${typ}]: ${setsStr}${vol>0?' ('+fmtVol(Math.round(vol))+' lbs total)':''}\n`;
     }
-    if (s.cardio&&s.cardio.type) {
-      const c=s.cardio;
-      ctx += `  Cardio: ${c.type}${c.duration?' '+c.duration+'min':''}${c.distance?' '+c.distance+'mi':''}${c.pace?' @ '+c.pace+'/mi':''}\n`;
-    }
+    const activities = Array.isArray(s.cardio) ? s.cardio : (s.cardio&&s.cardio.type ? [s.cardio] : []);
+    activities.forEach(c => {
+      if (c.type) ctx += `  Cardio: ${c.type}${c.duration?' '+c.duration+'min':''}${c.distance?' '+c.distance+'mi':''}${c.pace?' @ '+c.pace+'/mi':''}\n`;
+    });
     if (s.notes) ctx += `  Notes: ${s.notes}\n`;
     ctx += '\n';
   }
