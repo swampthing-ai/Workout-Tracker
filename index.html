@@ -104,17 +104,51 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
 .page { display: none; flex: 1; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; }
 .page.active { display: flex; flex-direction: column; }
 
-/* ── Rest Timer Bar ── */
+/* ── Rest Timer Bar — enhanced ── */
 #restTimerBar {
   display: none; position: sticky; top: 0; z-index: 40;
-  background: var(--amber); padding: 10px 20px;
-  display: none; align-items: center; justify-content: space-between;
-  flex-shrink: 0;
+  background: var(--amber); padding: 12px 20px;
+  align-items: center; justify-content: space-between;
+  flex-shrink: 0; box-shadow: 0 2px 12px rgba(201,138,62,0.3);
 }
 #restTimerBar.active { display: flex; }
-.rtb-label { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: #fff; }
-.rtb-time { font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 500; color: #fff; }
-.rtb-skip { background: rgba(0,0,0,0.15); border: none; border-radius: 6px; color: #000; font-size: 12px; font-weight: 600; padding: 5px 12px; cursor: pointer; }
+.rtb-label { font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700; color: #fff; letter-spacing: 1px; text-transform: uppercase; opacity: 0.8; }
+.rtb-time { font-family: 'JetBrains Mono', monospace; font-size: 28px; font-weight: 500; color: #fff; letter-spacing: 2px; }
+.rtb-skip { background: rgba(0,0,0,0.18); border: none; border-radius: 6px; color: #fff; font-size: 12px; font-weight: 700; padding: 6px 14px; cursor: pointer; font-family: 'Syne', sans-serif; letter-spacing: 0.5px; }
+
+/* ── Set row — larger tap targets ── */
+.set-num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--t3); padding: 0 6px 0 12px; width: 28px; text-align: center; font-weight: 700; }
+.set-inp { background: none; border: none; color: var(--text); font-family: 'JetBrains Mono', monospace; font-size: 17px; font-weight: 500; padding: 14px 6px; outline: none; text-align: center; width: 100%; }
+.set-inp::placeholder { color: var(--t3); }
+.set-inp:focus { background: var(--s3); border-radius: 4px; }
+.set-vol-td { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent-text); padding: 14px 12px 14px 4px; text-align: right; width: 64px; font-weight: 600; }
+.set-del-td { width: 36px; padding: 0 8px 0 0; text-align: center; }
+.set-del { background: none; border: none; color: var(--t3); cursor: pointer; font-size: 16px; padding: 4px; }
+.set-del:active { color: var(--red); }
+.add-set-btn { width: 100%; padding: 13px; background: none; border: none; border-top: 1px dashed var(--border2); color: var(--accent-text); font-size: 14px; font-weight: 600; cursor: pointer; font-family: 'Outfit', sans-serif; letter-spacing: 0.3px; }
+.add-set-btn:active { background: var(--accent-dim); }
+
+/* ── Weekly Digest Card ── */
+.digest-card { margin: 14px 20px 0; background: var(--s1); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; flex-shrink: 0; }
+.digest-head { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-bottom: 1px solid var(--border); background: var(--accent-dim); }
+.digest-title { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--accent-text); display: flex; align-items: center; gap: 8px; }
+.digest-date { font-size: 11px; color: var(--t2); font-family: 'JetBrains Mono', monospace; }
+.digest-body { padding: 14px 16px; display: flex; flex-direction: column; gap: 12px; }
+.digest-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.ds-item { text-align: center; }
+.ds-val { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; color: var(--accent-text); line-height: 1; }
+.ds-lbl { font-size: 9px; color: var(--t3); text-transform: uppercase; letter-spacing: 1px; margin-top: 3px; font-weight: 700; }
+.digest-insight { font-size: 13px; line-height: 1.6; color: var(--text); opacity: 0.8; }
+.digest-win { background: var(--accent-dim); border-radius: var(--radius-sm); padding: 10px 12px; font-size: 12px; color: var(--accent-text); line-height: 1.5; }
+.digest-win-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; font-family: 'JetBrains Mono', monospace; }
+.digest-loading { display: flex; align-items: center; gap: 10px; padding: 8px 0; color: var(--t2); font-size: 13px; }
+.digest-refresh { background: none; border: none; color: var(--t3); font-size: 13px; cursor: pointer; padding: 2px 6px; border-radius: 4px; }
+.digest-refresh:active { color: var(--accent-text); }
+
+/* ── Share Card ── */
+.share-btn { flex: 1; padding: 12px; background: var(--s2); border: 1px solid var(--border2); border-radius: var(--radius-sm); color: var(--t2); font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; }
+.share-btn:active { border-color: var(--accent); color: var(--accent-text); }
+#shareCanvas { display: none; }
 
 /* ── TODAY PAGE ── */
 .today-header { padding: 20px 20px 0; flex-shrink: 0; }
@@ -340,7 +374,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
 .ai-send:disabled { opacity: 0.3; cursor: not-allowed; }
 .ai-resp-card { background: var(--s1); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; min-height: 80px; }
 .ai-resp-lbl { font-size: 9px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 9px; font-family: 'JetBrains Mono', monospace; }
-.ai-resp-text { font-size: 14px; line-height: 1.7; color: #ccc; }
+.ai-resp-text { font-size: 14px; line-height: 1.7; color: var(--text); opacity: 0.8; }
 .ai-ph { color: var(--t3); font-style: italic; font-size: 13px; }
 
 /* Loading */
@@ -364,8 +398,8 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
 .is-lbl { font-size: 9px; color: var(--t3); text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin-top: 3px; }
 .insight-ai-box { background: var(--s2); border-radius: var(--radius-sm); padding: 14px; margin-bottom: 16px; min-height: 80px; }
 .iab-label { font-size: 10px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; font-family: 'JetBrains Mono', monospace; }
-.iab-text { font-size: 14px; line-height: 1.6; color: #ccc; }
-.sheet-close { width: 100%; padding: 14px; background: var(--accent); color: #000; border: none; border-radius: var(--radius-sm); font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; }
+.iab-text { font-size: 14px; line-height: 1.6; color: var(--text); opacity: 0.8; }
+.sheet-close { width: 100%; padding: 14px; background: var(--accent); color: #fff; border: none; border-radius: var(--radius-sm); font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; }
 
 /* ── Modal ── */
 .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 400; display: none; align-items: flex-end; justify-content: center; }
@@ -378,6 +412,54 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
 .m-actions { display: flex; gap: 9px; margin-top: 16px; }
 .m-cancel { flex: 1; padding: 12px; background: var(--s2); border: 1px solid var(--border2); border-radius: var(--radius-sm); color: var(--t2); font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; }
 .m-confirm { flex: 2; padding: 12px; background: var(--accent); border: none; border-radius: var(--radius-sm); color: #000; font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; }
+
+/* ── AI Workout Generator ── */
+/* Save to My Split */
+.save-split-box { background: var(--s2); border: 1px solid var(--border2); border-radius: var(--radius-sm); padding: 14px; margin-bottom: 12px; }
+.save-split-label { font-size: 10px; font-weight: 700; color: var(--accent-text); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; font-family: 'JetBrains Mono', monospace; display: flex; align-items: center; gap: 6px; }
+.save-split-input-row { display: flex; gap: 8px; }
+.save-split-input { flex: 1; background: var(--s1); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text); font-family: 'Outfit', sans-serif; font-size: 14px; padding: 10px 12px; outline: none; }
+.save-split-input:focus { border-color: var(--accent); }
+.save-split-btn { background: var(--accent); color: #fff; border: none; border-radius: var(--radius-sm); padding: 10px 16px; font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+.save-split-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.save-split-done { text-align: center; color: var(--accent-text); font-size: 13px; font-weight: 600; padding: 6px 0; }
+.type-card .tc-custom-badge { font-size: 9px; font-weight: 700; background: var(--accent-dim); color: var(--accent-text); border: 1px solid var(--accent); border-radius: 10px; padding: 1px 6px; font-family: 'JetBrains Mono', monospace; display: inline-block; margin-top: 3px; }
+
+.ai-gen-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 600; display: none; align-items: flex-end; justify-content: center; backdrop-filter: blur(6px); }
+.ai-gen-overlay.open { display: flex; }
+.ai-gen-sheet { background: var(--s1); border: 1px solid var(--border); border-radius: 22px 22px 0 0; padding: 22px 22px calc(22px + var(--safe-bottom)); width: 100%; max-width: 540px; max-height: 92vh; overflow-y: auto; animation: slideUp 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+
+/* Step 1 — configure */
+.gen-type-label { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+.gen-type-sub { font-size: 13px; color: var(--t2); margin-bottom: 18px; }
+.gen-option-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
+.gen-option { background: var(--s2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 12px; cursor: pointer; transition: all 0.15s; text-align: center; }
+.gen-option:active { transform: scale(0.97); }
+.gen-option.sel { border-color: var(--accent); background: var(--accent-dim); color: var(--accent-text); }
+.gen-option .go-label { font-size: 13px; font-weight: 600; }
+.gen-option .go-sub { font-size: 11px; color: var(--t2); margin-top: 2px; }
+.gen-option.sel .go-sub { color: var(--accent); }
+
+/* Step 2 — preview */
+.gen-preview-ex { background: var(--s2); border-radius: var(--radius-sm); padding: 13px 14px; margin-bottom: 8px; display: flex; align-items: flex-start; gap: 12px; }
+.gpe-num { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 800; color: var(--accent-text); width: 24px; flex-shrink: 0; line-height: 1.2; }
+.gpe-body { flex: 1; min-width: 0; }
+.gpe-name { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; }
+.gpe-sets { font-size: 12px; color: var(--t2); font-family: 'JetBrains Mono', monospace; margin-top: 3px; }
+.gpe-note { font-size: 12px; color: var(--text); opacity: 0.65; margin-top: 4px; font-style: italic; line-height: 1.5; }
+.gpe-type { font-size: 10px; font-weight: 700; font-family: 'JetBrains Mono', monospace; padding: 2px 7px; border-radius: 10px; background: var(--s3); color: var(--t2); margin-top: 4px; display: inline-block; }
+.gpe-remove { background: none; border: none; color: var(--t3); cursor: pointer; font-size: 16px; padding: 2px; flex-shrink: 0; align-self: flex-start; }
+.gpe-remove:active { color: var(--red); }
+
+.gen-coach-note { background: var(--accent-dim); border: 1px solid rgba(74,124,111,0.2); border-radius: var(--radius-sm); padding: 12px 14px; margin-bottom: 16px; font-size: 13px; color: var(--accent-text); line-height: 1.6; }
+.gen-coach-label { font-size: 10px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; font-family: 'JetBrains Mono', monospace; }
+
+.gen-actions { display: flex; gap: 9px; margin-top: 14px; }
+.gen-cancel { flex: 1; padding: 13px; background: var(--s2); border: 1px solid var(--border2); border-radius: var(--radius-sm); color: var(--t2); font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; }
+.gen-start { flex: 2; padding: 13px; background: var(--accent); border: none; border-radius: var(--radius-sm); color: #fff; font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; }
+.gen-regen { flex: 1; padding: 13px; background: var(--s2); border: 1px solid var(--border2); border-radius: var(--radius-sm); color: var(--accent-text); font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; }
+
+.ai-type-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 9px; font-weight: 700; background: var(--accent-dim); color: var(--accent-text); border: 1px solid var(--accent); border-radius: 10px; padding: 2px 7px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.5px; vertical-align: middle; margin-left: 4px; }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 3px; }
@@ -405,14 +487,34 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
     <div class="today-date" id="todayDate">—</div>
     <div class="split-row" id="splitRow"></div>
   </div>
+  <div id="weeklyDigest" style="display:none" class="digest-card">
+    <div class="digest-head">
+      <div class="digest-title">📊 Weekly Digest</div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <div class="digest-date" id="digestDateRange">—</div>
+        <button class="digest-refresh" onclick="loadWeeklyDigest(true)" title="Refresh">↺</button>
+      </div>
+    </div>
+    <div class="digest-body" id="digestBody">
+      <div class="digest-loading"><div class="dots"><span></span><span></span><span></span></div> Building your week…</div>
+    </div>
+  </div>
+
   <div class="quick-start">
     <div class="qs-head">
       <div class="qs-title">Start Session</div>
       <input type="date" class="qs-date" id="qsDate">
     </div>
     <div class="qs-body">
+      <div class="m-label" style="margin-top:0;margin-bottom:8px">Your Split</div>
       <div class="type-grid" id="typeGrid"></div>
-      <button class="start-btn" id="startBtn" disabled onclick="startSession()">Select a workout type</button>
+      <div id="customSplitSection" style="display:none">
+        <div class="m-label" style="margin-top:14px;margin-bottom:8px">Saved Workouts <span class="ai-type-badge">★ Mine</span></div>
+        <div class="type-grid" id="customSplitGrid"></div>
+      </div>
+      <div class="m-label" style="margin-top:14px;margin-bottom:8px">AI Generated <span class="ai-type-badge">✦ AI</span></div>
+      <div class="type-grid" id="aiTypeGrid"></div>
+      <button class="start-btn" id="startBtn" disabled onclick="handleStartBtn()">Select a workout type</button>
     </div>
   </div>
   <div class="sec-head"><div class="sec-label">Recent</div><div class="sec-action" onclick="showPage('history')">See all →</div></div>
@@ -435,6 +537,12 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
     <div class="vb-item"><div class="vb-val" id="vb-reps">0</div><div class="vb-lbl">Reps</div></div>
     <div class="vb-item"><div class="vb-val" id="vb-vol">—</div><div class="vb-lbl">Volume</div></div>
     <div class="vb-item vb-cal"><div class="vb-val" id="vb-cal">—</div><div class="vb-lbl">Cal 🔥</div></div>
+  </div>
+  <div id="aiGenNote" style="display:none;margin:0 20px 10px">
+    <div class="gen-coach-note">
+      <div class="gen-coach-label">✦ AI Coach Note</div>
+      <div id="aiGenNoteText"></div>
+    </div>
   </div>
   <div class="ex-section" id="exSection"></div>
   <div style="padding:0 20px 9px"><button class="add-ex-btn" onclick="addExercise()"><span style="font-size:18px;font-weight:300">+</span> Add Exercise</button></div>
@@ -595,6 +703,88 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
 </nav>
 </div>
 
+<!-- AI Workout Generator -->
+<div class="ai-gen-overlay" id="aiGenOverlay">
+  <div class="ai-gen-sheet" id="aiGenSheet">
+    <div class="sheet-handle"></div>
+
+    <!-- Step 1: Configure -->
+    <div id="genStep1">
+      <div class="gen-type-label" id="genTypeLabel">—</div>
+      <div class="gen-type-sub">Customize your session</div>
+
+      <div class="m-label">Duration</div>
+      <div class="gen-option-grid" id="genDurationGrid">
+        <div class="gen-option sel" data-group="duration" data-val="30" onclick="selectGenOption(this,'duration')"><div class="go-label">30 min</div><div class="go-sub">Quick session</div></div>
+        <div class="gen-option" data-group="duration" data-val="45" onclick="selectGenOption(this,'duration')"><div class="go-label">45 min</div><div class="go-sub">Standard</div></div>
+        <div class="gen-option" data-group="duration" data-val="60" onclick="selectGenOption(this,'duration')"><div class="go-label">60 min</div><div class="go-sub">Full session</div></div>
+        <div class="gen-option" data-group="duration" data-val="75" onclick="selectGenOption(this,'duration')"><div class="go-label">75+ min</div><div class="go-sub">Extended</div></div>
+      </div>
+
+      <div class="m-label" id="intensityLabel">Intensity</div>
+      <div class="gen-option-grid" id="genIntensityGrid">
+        <div class="gen-option" data-group="intensity" data-val="Light" onclick="selectGenOption(this,'intensity')"><div class="go-label">Light</div><div class="go-sub">Recovery pace</div></div>
+        <div class="gen-option sel" data-group="intensity" data-val="Moderate" onclick="selectGenOption(this,'intensity')"><div class="go-label">Moderate</div><div class="go-sub">Working hard</div></div>
+        <div class="gen-option" data-group="intensity" data-val="Hard" onclick="selectGenOption(this,'intensity')"><div class="go-label">Hard</div><div class="go-sub">Push it</div></div>
+        <div class="gen-option" data-group="intensity" data-val="Max" onclick="selectGenOption(this,'intensity')"><div class="go-label">Max</div><div class="go-sub">All out</div></div>
+      </div>
+
+      <div id="runSubTypeWrap" style="display:none">
+        <div class="m-label">Run Type</div>
+        <div class="gen-option-grid">
+          <div class="gen-option sel" data-group="runtype" data-val="Long Distance" onclick="selectGenOption(this,'runtype')"><div class="go-label">Long Distance</div><div class="go-sub">Steady state</div></div>
+          <div class="gen-option" data-group="runtype" data-val="Short Distance" onclick="selectGenOption(this,'runtype')"><div class="go-label">Short Distance</div><div class="go-sub">Speed work</div></div>
+          <div class="gen-option" data-group="runtype" data-val="Intervals" onclick="selectGenOption(this,'runtype')"><div class="go-label">Intervals</div><div class="go-sub">On/off effort</div></div>
+          <div class="gen-option" data-group="runtype" data-val="Hills" onclick="selectGenOption(this,'runtype')"><div class="go-label">Hills</div><div class="go-sub">Grade work</div></div>
+        </div>
+      </div>
+
+      <div class="m-label">Focus (optional)</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px" id="genFocusChips">
+        <div class="cpill" data-focus="Upper Body" onclick="toggleFocus(this)">Upper Body</div>
+        <div class="cpill" data-focus="Lower Body" onclick="toggleFocus(this)">Lower Body</div>
+        <div class="cpill" data-focus="Core" onclick="toggleFocus(this)">Core</div>
+        <div class="cpill" data-focus="Arms" onclick="toggleFocus(this)">Arms</div>
+        <div class="cpill" data-focus="Posterior Chain" onclick="toggleFocus(this)">Posterior Chain</div>
+        <div class="cpill" data-focus="Cardio Finish" onclick="toggleFocus(this)">Cardio Finish</div>
+      </div>
+
+      <div class="m-label">Tell me where you want to focus <span style="color:var(--t3);font-weight:400;text-transform:none;letter-spacing:0">(optional)</span></div>
+      <textarea class="notes-field" id="genCustomPrompt" placeholder="e.g. Long distance row, want to burn 600+ calories, steady state pace, end with a 5km piece." style="min-height:72px;margin-bottom:14px;font-size:14px" maxlength="400"></textarea>
+
+      <div class="gen-actions">
+        <button class="gen-cancel" onclick="closeAIGen()">Cancel</button>
+        <button class="gen-start" onclick="generateWorkout()">Generate Workout →</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Preview -->
+    <div id="genStep2" style="display:none">
+      <div class="gen-type-label" id="genPreviewTitle">—</div>
+      <div class="gen-type-sub" id="genPreviewSub">—</div>
+      <div class="gen-coach-note" id="genCoachNote" style="display:none">
+        <div class="gen-coach-label">Coach Note</div>
+        <div id="genCoachText"></div>
+      </div>
+      <div id="genExerciseList"></div>
+
+      <!-- Refine prompt box -->
+      <div class="save-split-box" id="refineBox" style="margin-top:4px">
+        <div class="save-split-label">✦ Refine this workout</div>
+        <div style="font-size:12px;color:var(--t2);margin-bottom:8px;line-height:1.5">Describe what you want changed and regenerate.</div>
+        <textarea class="notes-field" id="genRefinePrompt" placeholder="e.g. Make it longer distance, skip the intervals, add a 5km piece at the end…" style="min-height:64px;font-size:13px;margin-bottom:8px" maxlength="400"></textarea>
+        <button class="gen-start" style="width:100%;padding:12px" onclick="refineWorkout()">↺ Regenerate with Changes</button>
+      </div>
+
+      <div class="gen-actions" style="margin-top:10px">
+        <button class="gen-cancel" onclick="closeAIGen()">Cancel</button>
+        <button class="gen-regen" onclick="regenerateWorkout()">↺ Start Over</button>
+        <button class="gen-start" onclick="startGeneratedWorkout()">Start Session →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Post-Session Insight Sheet -->
 <div class="overlay" id="insightOverlay">
   <div class="sheet">
@@ -606,6 +796,23 @@ body { background: var(--bg); color: var(--text); font-family: 'Outfit', sans-se
       <div class="iab-label">AI Coach Insight</div>
       <div class="iab-text" id="insightAI"><div class="dots"><span></span><span></span><span></span></div></div>
     </div>
+    <!-- Save to My Split — only shown for AI-generated sessions -->
+    <div class="save-split-box" id="saveSplitBox" style="display:none">
+      <div class="save-split-label">✦ Save to My Split</div>
+      <div style="font-size:12px;color:var(--t2);margin-bottom:10px;line-height:1.5">Keep this workout as a one-tap template in Your Split section.</div>
+      <div class="save-split-input-row">
+        <input class="save-split-input" id="saveSplitName" placeholder="Name this workout…" maxlength="30">
+        <button class="save-split-btn" id="saveSplitBtn" onclick="saveToSplit()">Save</button>
+      </div>
+      <div class="save-split-done" id="saveSplitDone" style="display:none">✓ Saved to Your Split!</div>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:12px">
+      <button class="share-btn" id="shareBtn" onclick="shareSession()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        Share Session
+      </button>
+    </div>
+    <canvas id="shareCanvas"></canvas>
     <button class="sheet-close" onclick="closeInsight()">Got it →</button>
   </div>
 </div>
@@ -651,6 +858,19 @@ const SESSION_TYPES = [
   { key:'Legs',            icon:'🦵', color:'bg-legs',  day:'Thu' },
   { key:'Shoulders',       icon:'🎯', color:'bg-shoulders', day:'Fri' },
   { key:'Cardio',          icon:'🏃', color:'bg-cardio', day:'' },
+];
+
+// AI-generated workout types
+const AI_WORKOUT_TYPES = [
+  { key:'Full Body',     icon:'⚡', color:'bg-chest',     sub:'All muscle groups' },
+  { key:'Body Weight',   icon:'🤸', color:'bg-back',      sub:'No equipment needed' },
+  { key:'Abdominals',    icon:'🔥', color:'bg-legs',      sub:'Core & abs focused' },
+  { key:'Rowing Machine', icon:'🚣', color:'bg-cardio',    sub:'Cardio on the erg' },
+  { key:'Running',       icon:'👟', color:'bg-shoulders', sub:'Distance, speed, hills' },
+  { key:'Upper Body',    icon:'💪', color:'bg-chest',     sub:'Chest, back, shoulders, arms' },
+  { key:'Active Recovery', icon:'🧘', color:'bg-back',   sub:'Low intensity, mobility' },
+  { key:'Stretching',    icon:'🙆', color:'bg-cardio',    sub:'Flexibility & mobility' },
+  { key:'HIIT',          icon:'⏱', color:'bg-legs',      sub:'High intensity intervals' },
 ];
 
 const CARDIO_TYPES = ['Walk','Run','Hike','Peloton','Cycling','Rowing','Elliptical','Other'];
@@ -708,14 +928,97 @@ const PLATE_SIZES = [
 ];
 
 // ══════════════════════════════════════════════════════
-// DATA
+// STORAGE — localStorage now, Supabase-ready later
 // ══════════════════════════════════════════════════════
-const _mem = {};
-function load() { try { const r=_mem.v4; if(r) return JSON.parse(r); } catch(e){} return {sessions:[], bodyStats:[]}; }
-function save() { _mem.v4 = JSON.stringify(data); }
-let data = load();
+
+const STORAGE_KEY = 'train_v4';
+
+// ── Supabase config (fill in when ready) ──
+// To activate: set SUPABASE_ENABLED = true and fill URL + KEY
+const SUPABASE_ENABLED = false;
+const SUPABASE_URL = '';   // e.g. https://xyzxyz.supabase.co
+const SUPABASE_KEY = '';   // your anon/public API key
+const SUPABASE_USER = 'default'; // single-user for now; swap for auth later
+
+// ── localStorage (active now) ──
+function load() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch(e) { console.warn('localStorage read failed:', e); }
+  return { sessions: [], bodyStats: [], customSplits: [] };
+}
+
+function save() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  } catch(e) { console.warn('localStorage write failed:', e); }
+  // When Supabase is enabled, also sync to cloud
+  if (SUPABASE_ENABLED) supabaseSave();
+}
+
+// ── Supabase sync (inactive until you fill in config) ──
+async function supabaseSave() {
+  if (!SUPABASE_URL || !SUPABASE_KEY) return;
+  try {
+    await fetch(`${SUPABASE_URL}/rest/v1/train_data?user_id=eq.${SUPABASE_USER}`, {
+      method: 'DELETE',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+      }
+    });
+    await fetch(`${SUPABASE_URL}/rest/v1/train_data`, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({
+        user_id: SUPABASE_USER,
+        payload: data,
+        updated_at: new Date().toISOString()
+      })
+    });
+  } catch(e) { console.warn('Supabase sync failed:', e); }
+}
+
+async function supabaseLoad() {
+  if (!SUPABASE_ENABLED || !SUPABASE_URL || !SUPABASE_KEY) return null;
+  try {
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/train_data?user_id=eq.${SUPABASE_USER}&select=payload&limit=1`,
+      { headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` } }
+    );
+    const rows = await res.json();
+    if (rows && rows.length > 0 && rows[0].payload) return rows[0].payload;
+  } catch(e) { console.warn('Supabase load failed:', e); }
+  return null;
+}
+
+// ── Init: try Supabase first, fall back to localStorage ──
+async function initData() {
+  if (SUPABASE_ENABLED) {
+    const cloud = await supabaseLoad();
+    if (cloud) {
+      data = cloud;
+      // Also write to localStorage as cache
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch(e) {}
+      return;
+    }
+  }
+  data = load();
+}
+
+
 let activeId = null;
 let selectedType = null;
+let selectedIsAI = false;
+let genConfig = { duration: '60', intensity: 'Moderate', runtype: 'Long Distance', focus: [] };
+let generatedWorkout = null;
 let restTimer = null;
 let restSeconds = 0;
 let barWeight = 45;
@@ -739,7 +1042,11 @@ function getTodayType() {
   return null;
 }
 
-function typeInfo(t) { return SESSION_TYPES.find(x=>x.key===t)||{icon:'💪',color:'bg-chest',day:''}; }
+function typeInfo(t) {
+  return SESSION_TYPES.find(x=>x.key===t) ||
+         AI_WORKOUT_TYPES.find(x=>x.key===t) ||
+         {icon:'💪',color:'bg-chest',day:''};
+}
 
 // Volume helpers — DB exercises multiply by 2 (both dumbbells), timed use weight × duration_min
 function exSetVol(set, exType) {
@@ -789,7 +1096,7 @@ function sessionCalories(s) {
   const liftCal = (s.type !== 'Cardio' && sSets(s) > 0) ? estLiftingCal(s) : 0;
   const activities = Array.isArray(s.cardio) ? s.cardio : (s.cardio && s.cardio.type ? [s.cardio] : []);
   const cardioCal = activities.reduce((t, c) =>
-    t + (c.type && c.duration ? estCardioCal(c.type, c.duration) : 0), 0);
+    t + (c.type && c.durationMin ? estCardioCal(c.type, c.durationMin) : 0), 0);
   return liftCal + cardioCal;
 }
 
@@ -849,7 +1156,7 @@ function seed() {
         {id:'e5',name:'OH DB Triceps Ext',sets:[{w:65,r:13},{w:70,r:10},{w:70,r:10}]},
         {id:'e6',name:'Rope Pushdowns',sets:[{w:70,r:12},{w:80,r:8},{w:80,r:9}]},
         {id:'e7',name:'Single Arm Pushdowns',sets:[{w:30,r:10},{w:40,r:10},{w:40,r:10}]},
-      ], cardio:[{id:'c1',type:'Walk',duration:60,distance:4,unit:'miles',pace:'15:00'}] },
+      ], cardio:[{id:'c1',type:'Walk',durationMin:60,durationRaw:'60:00',distance:4,unit:'miles',pace:'15:00'}] },
     { id:'s6', type:'Back & Biceps', date:'2026-04-28', notes:'Started too light. Go 155-160 next. Add Back Extensions.',
       exercises:[
         {id:'e1',name:'Lat Pulldown',sets:[{w:150,r:10},{w:150,r:9},{w:150,r:9}]},
@@ -932,16 +1239,46 @@ function renderToday() {
   document.getElementById('qsDate').value = todayStr();
 
   const todayType = getTodayType();
+
+  // Split chips row
   document.getElementById('splitRow').innerHTML = SESSION_TYPES.map(t =>
-    `<div class="split-chip ${t.key===todayType?'today':''}" onclick="selectType('${t.key}')">${t.day?t.day+' · ':''}${t.key}</div>`
+    `<div class="split-chip ${t.key===todayType?'today':''}" onclick="selectType('${t.key}',false)">${t.day?t.day+' · ':''}${t.key}</div>`
   ).join('');
 
+  // Standard split grid
   document.getElementById('typeGrid').innerHTML = SESSION_TYPES.map(t =>
-    `<div class="type-card ${selectedType===t.key?'sel':''}" onclick="selectType('${t.key}')">
+    `<div class="type-card ${selectedType===t.key&&!selectedIsAI?'sel':''}" onclick="selectType('${t.key}',false)">
       <div class="tc-icon">${t.icon}</div><div class="tc-label">${t.key}</div></div>`
   ).join('');
 
-  if (!selectedType && todayType) selectType(todayType);
+  // Custom splits section
+  const customSplits = data.customSplits || [];
+  const csWrap = document.getElementById('customSplitSection');
+  if (csWrap) {
+    if (customSplits.length > 0) {
+      csWrap.style.display = 'block';
+      document.getElementById('customSplitGrid').innerHTML = customSplits.map(cs =>
+        `<div class="type-card ${selectedType===cs.id&&!selectedIsAI?'sel':''}" onclick="selectCustomSplit('${cs.id}')" style="position:relative">
+          <div class="tc-icon">${cs.icon}</div>
+          <div class="tc-label">${cs.name}<br><span class="tc-custom-badge">My Split</span></div>
+          <button onclick="event.stopPropagation();deleteCustomSplit('${cs.id}')"
+            style="position:absolute;top:5px;right:5px;background:none;border:none;color:var(--t3);font-size:13px;cursor:pointer;padding:2px">✕</button>
+        </div>`
+      ).join('');
+    } else {
+      csWrap.style.display = 'none';
+    }
+  }
+
+  // AI workout grid
+  document.getElementById('aiTypeGrid').innerHTML = AI_WORKOUT_TYPES.map(t =>
+    `<div class="type-card ${selectedType===t.key&&selectedIsAI?'sel':''}" onclick="selectType('${t.key}',true)">
+      <div class="tc-icon">${t.icon}</div>
+      <div class="tc-label">${t.key}<br><span style="font-size:10px;font-weight:400;color:var(--t2)">${t.sub}</span></div>
+    </div>`
+  ).join('');
+
+  if (!selectedType && todayType) selectType(todayType, false);
 
   const recent = [...data.sessions].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,3);
   const rl = document.getElementById('recentList');
@@ -950,13 +1287,47 @@ function renderToday() {
     : recent.map(sessionRowHTML).join('');
 }
 
-function selectType(type) {
+function selectType(type, isAI) {
   selectedType = type;
-  document.querySelectorAll('.type-card').forEach((c,i) => c.classList.toggle('sel', SESSION_TYPES[i].key===type));
-  document.querySelectorAll('.split-chip').forEach(c => c.classList.toggle('today', c.textContent.includes(type)));
+  selectedIsAI = isAI;
+  // Update standard grid
+  document.querySelectorAll('#typeGrid .type-card').forEach((c,i) =>
+    c.classList.toggle('sel', SESSION_TYPES[i].key===type && !isAI));
+  // Update AI grid
+  document.querySelectorAll('#aiTypeGrid .type-card').forEach((c,i) =>
+    c.classList.toggle('sel', AI_WORKOUT_TYPES[i].key===type && isAI));
+  // Update split chips
+  document.querySelectorAll('.split-chip').forEach(c =>
+    c.classList.toggle('today', c.textContent.includes(type) && !isAI));
   const btn = document.getElementById('startBtn');
   btn.disabled = false;
-  btn.textContent = `Start ${type} →`;
+  btn.textContent = isAI ? `Generate ${type} Workout ✦` : `Start ${type} →`;
+}
+
+function selectCustomSplit(splitId) {
+  selectedType = splitId;
+  selectedIsAI = false;
+  // Deselect all other grids
+  document.querySelectorAll('#typeGrid .type-card').forEach(c => c.classList.remove('sel'));
+  document.querySelectorAll('#aiTypeGrid .type-card').forEach(c => c.classList.remove('sel'));
+  document.querySelectorAll('#customSplitGrid .type-card').forEach(c => {
+    const onclick = c.getAttribute('onclick') || '';
+    c.classList.toggle('sel', onclick.includes(splitId));
+  });
+  const split = (data.customSplits || []).find(s => s.id === splitId);
+  const btn = document.getElementById('startBtn');
+  btn.disabled = false;
+  btn.textContent = `Start ${split ? split.name : 'Workout'} →`;
+}
+
+function handleStartBtn() {
+  if (selectedIsAI) {
+    openAIGen(selectedType);
+  } else if (selectedType && selectedType.startsWith('cs_')) {
+    startCustomSplit(selectedType);
+  } else {
+    startSession();
+  }
 }
 
 function startSession() {
@@ -982,7 +1353,7 @@ function sessionRowHTML(s) {
   const cal = sessionCalories(s);
   const activities = Array.isArray(s.cardio) ? s.cardio : (s.cardio && s.cardio.type ? [s.cardio] : []);
   const cardioStr = activities.length > 0
-    ? ' · ' + activities.map(c => `${c.type||''}${c.distance?' '+c.distance+'mi':''}`).join(', ')
+    ? ' · ' + activities.map(c => `${c.type||''}${c.distance?' '+c.distance.toFixed(2)+'mi':''}${c.durationMin?' '+fmtDuration(c.durationMin):''}`).join(', ')
     : '';
   const insight = s.aiInsight ? `<div class="sr-insight">${s.aiInsight.slice(0,60)}…</div>` : '';
   return `
@@ -1049,6 +1420,17 @@ function renderLog() {
   if (isCardio && s.cardio.length === 0) {
     s.cardio.push({ id: uid(), type: 'Walk' });
     save();
+  }
+
+  // Show AI coach note if this was a generated session
+  const noteEl = document.getElementById('aiGenNote');
+  if (noteEl) {
+    if (s.aiGenerated && s.notes) {
+      document.getElementById('aiGenNoteText').textContent = s.notes;
+      noteEl.style.display = 'block';
+    } else {
+      noteEl.style.display = 'none';
+    }
   }
 
   renderVolBar(s);
@@ -1264,8 +1646,10 @@ function renderCardioSection(s) {
 }
 
 function cardioActivityHTML(s, c, index) {
-  const pace = computePaceVal(c.duration, c.distance);
-  const cal = (c.type && c.duration) ? estCardioCal(c.type, c.duration) : 0;
+  const pace = computePaceVal(c.durationMin, c.distance);
+  const cal = (c.type && c.durationMin) ? estCardioCal(c.type, c.durationMin) : 0;
+  const durDisplay = fmtDuration(c.durationMin);
+
   return `
   <div class="ex-card" style="margin-bottom:0;border-radius:var(--radius);overflow:hidden">
     <div class="ex-head" style="background:var(--accent-dim)">
@@ -1278,33 +1662,87 @@ function cardioActivityHTML(s, c, index) {
       </div>
       <div class="cardio-metrics">
         <div class="mfield"><div class="mlabel">Duration</div>
-          <div class="mwrap"><input class="minput" type="number" placeholder="0" min="0" value="${c.duration||''}"
-            inputmode="decimal" oninput="updateCardioField('${s.id}','${c.id}','duration',this.value)">
-            <span class="munit">min</span></div></div>
+          <div class="mwrap">
+            <input class="minput" type="text" inputmode="text" placeholder="mm:ss"
+              value="${durDisplay}"
+              onblur="updateCardioField('${s.id}','${c.id}','durationRaw',this.value)"
+              style="letter-spacing:1px">
+            <span class="munit" style="right:6px;font-size:9px">mm:ss</span>
+          </div>
+          <div style="font-size:10px;color:var(--t3);margin-top:2px">e.g. 60:00 or 1:05:00</div>
+        </div>
         <div class="mfield"><div class="mlabel">Distance</div>
-          <div class="mwrap"><input class="minput" type="number" placeholder="0.0" min="0" step="0.01" value="${c.distance||''}"
-            inputmode="decimal" oninput="updateCardioField('${s.id}','${c.id}','distance',this.value)">
-            <span class="munit">mi</span></div></div>
+          <div class="mwrap">
+            <input class="minput" type="text" inputmode="decimal" placeholder="0.00"
+              value="${c.distance != null ? c.distance : ''}"
+              onblur="updateCardioField('${s.id}','${c.id}','distance',this.value)">
+            <span class="munit">mi</span>
+          </div>
+        </div>
         <div class="mfield"><div class="mlabel">Calories</div>
-          <div class="mwrap"><input class="minput" type="number" placeholder="0" min="0" value="${c.calories||''}"
-            inputmode="numeric" oninput="updateCardioField('${s.id}','${c.id}','calories',this.value)">
-            <span class="munit">cal</span></div></div>
+          <div class="mwrap">
+            <input class="minput" type="text" inputmode="numeric" placeholder="0"
+              value="${c.calories != null ? c.calories : ''}"
+              onblur="updateCardioField('${s.id}','${c.id}','calories',this.value)">
+            <span class="munit">cal</span>
+          </div>
+        </div>
         <div class="mfield"><div class="mlabel">Elevation</div>
-          <div class="mwrap"><input class="minput" type="number" placeholder="0" min="0" value="${c.elevation||''}"
-            inputmode="numeric" oninput="updateCardioField('${s.id}','${c.id}','elevation',this.value)">
-            <span class="munit">ft</span></div></div>
+          <div class="mwrap">
+            <input class="minput" type="text" inputmode="numeric" placeholder="0"
+              value="${c.elevation != null ? c.elevation : ''}"
+              onblur="updateCardioField('${s.id}','${c.id}','elevation',this.value)">
+            <span class="munit">ft</span>
+          </div>
+        </div>
       </div>
-      ${pace ? `<div class="pace-card"><div class="pace-lbl">Avg Pace</div><div style="text-align:right"><div class="pace-val">${pace}</div><div class="pace-unit">min / mile</div></div></div>` : ''}
-      ${cal > 0 ? `<div class="cardio-cal-card"><div class="cc-lbl">Est. Calories</div><div class="cc-val">~${cal} cal</div></div>` : ''}
+      ${pace ? `
+      <div class="pace-card">
+        <div class="pace-lbl">Avg Pace</div>
+        <div style="text-align:right">
+          <div class="pace-val">${pace}</div>
+          <div class="pace-unit">min / mile</div>
+        </div>
+      </div>` : ''}
+      ${cal > 0 ? `
+      <div class="cardio-cal-card">
+        <div class="cc-lbl">Est. Calories</div>
+        <div class="cc-val">~${cal} cal</div>
+      </div>` : ''}
       <div class="mfield"><div class="mlabel">Notes</div>
         <textarea class="notes-field" style="min-height:50px" placeholder="Route, HR zone, how you felt..."
-          oninput="updateCardioField('${s.id}','${c.id}','notes',this.value)">${c.notes||''}</textarea></div>
+          onblur="updateCardioField('${s.id}','${c.id}','notes',this.value)">${c.notes||''}</textarea>
+      </div>
     </div>
   </div>`;
 }
 
-function computePaceVal(duration, distance) {
-  const dur = parseFloat(duration), dist = parseFloat(distance);
+// Convert total minutes to mm:ss or h:mm:ss display string
+function fmtDuration(totalMin) {
+  if (!totalMin && totalMin !== 0) return '';
+  const totalSec = Math.round(totalMin * 60);
+  const h = Math.floor(totalSec / 3600);
+  const m = Math.floor((totalSec % 3600) / 60);
+  const s = totalSec % 60;
+  if (h > 0) return `${h}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+  return `${m}:${s.toString().padStart(2,'0')}`;
+}
+
+// Parse mm:ss or h:mm:ss or plain minutes into total decimal minutes
+function parseDuration(raw) {
+  if (!raw || !raw.trim()) return null;
+  const str = raw.trim();
+  // Plain number = minutes
+  if (/^\d+(\.\d+)?$/.test(str)) return parseFloat(str);
+  const parts = str.split(':').map(Number);
+  if (parts.some(isNaN)) return null;
+  if (parts.length === 2) return parts[0] + parts[1] / 60; // mm:ss
+  if (parts.length === 3) return parts[0] * 60 + parts[1] + parts[2] / 60; // h:mm:ss
+  return null;
+}
+
+function computePaceVal(durationMin, distance) {
+  const dur = parseFloat(durationMin), dist = parseFloat(distance);
   if (!dur || !dist || dist === 0) return null;
   const pMin = dur / dist;
   const pm = Math.floor(pMin), ps = Math.round((pMin - pm) * 60);
@@ -1340,11 +1778,27 @@ function updateCardioField(sid, cid, field, val) {
   if (!s || !Array.isArray(s.cardio)) return;
   const c = s.cardio.find(x=>x.id===cid);
   if (!c) return;
-  c[field] = (field === 'notes') ? val : (val ? parseFloat(val) : null);
-  if (field === 'duration' || field === 'distance') {
-    c.pace = computePaceVal(c.duration, c.distance);
+
+  if (field === 'durationRaw') {
+    c.durationRaw = val;
+    c.durationMin = parseDuration(val);
+  } else if (field === 'distance') {
+    c.distance = val ? parseFloat(val) : null;
+  } else if (field === 'calories') {
+    c.calories = val ? parseInt(val) : null;
+  } else if (field === 'elevation') {
+    c.elevation = val ? parseInt(val) : null;
+  } else if (field === 'notes') {
+    c.notes = val;
   }
-  save(); renderCardioSection(s); renderVolBar(s);
+
+  if (field === 'durationRaw' || field === 'distance') {
+    c.pace = computePaceVal(c.durationMin, c.distance);
+  }
+
+  save();
+  renderCardioSection(s);
+  renderVolBar(s);
 }
 
 function updateSessionNotes(sid, val) {
@@ -1381,29 +1835,43 @@ function saveAndExit() {
 
 function showInsight(s) {
   stopRestTimer();
+  _shareSession = s;
   const vol = sVol(s);
   const sets = sSets(s);
-  const reps = sReps(s);
   const cal = sessionCalories(s);
-  const liftCal = s.type!=='Cardio' ? estLiftingCal(s.type, 60) : 0;
-  const cardioCal = s.cardio&&s.cardio.type&&s.cardio.duration ? estCardioCal(s.cardio.type,s.cardio.duration) : 0;
+  const liftCal = s.type !== 'Cardio' && sSets(s) > 0 ? estLiftingCal(s) : 0;
+  const acts = Array.isArray(s.cardio) ? s.cardio : [];
+  const cardioCal = acts.reduce((t,c) => t + (c.type&&c.durationMin ? estCardioCal(c.type,c.durationMin) : 0), 0);
+
+  // For cardio sessions show distance/duration instead of sets/volume
+  const isCardio = s.type === 'Cardio';
+  const totalDurMin = acts.reduce((t,c) => t+(c.durationMin||0), 0);
+  const totalDist = acts.reduce((t,c) => t+(c.distance||0), 0);
 
   document.getElementById('insightTitle').textContent = `${s.type} Complete 🎯`;
   document.getElementById('insightSub').textContent = `${fmtDate(s.date)} · Great work`;
-  document.getElementById('insightStats').innerHTML = `
-    <div class="is-card"><div class="is-val" style="color:var(--accent)">${sets}</div><div class="is-lbl">Sets</div></div>
-    <div class="is-card"><div class="is-val" style="color:var(--accent)">${fmtVol(vol)}</div><div class="is-lbl">lbs</div></div>
+  document.getElementById('insightStats').innerHTML = isCardio ? `
+    <div class="is-card"><div class="is-val" style="color:var(--accent)">${acts.length}</div><div class="is-lbl">Activities</div></div>
+    <div class="is-card"><div class="is-val" style="color:var(--accent)">${totalDist>0?totalDist.toFixed(2):'—'}</div><div class="is-lbl">Miles</div></div>
     <div class="is-card"><div class="is-val" style="color:var(--amber)">${cal>0?'~'+cal:'—'}</div><div class="is-lbl">Cal 🔥</div></div>
-    ${liftCal>0&&cardioCal>0?`<div class="is-card" style="grid-column:1/2"><div class="is-val" style="color:var(--amber)" style="font-size:15px">${liftCal}</div><div class="is-lbl">Lifting cal</div></div><div class="is-card" style="grid-column:2/3"><div class="is-val" style="color:var(--accent);font-size:15px">${cardioCal}</div><div class="is-lbl">Cardio cal</div></div>`:''}
+    ${totalDurMin>0?`<div class="is-card" style="grid-column:1/-1"><div class="is-val" style="color:var(--accent-text);font-size:17px">${fmtDuration(totalDurMin)}</div><div class="is-lbl">Total Duration</div></div>`:''}
+  ` : `
+    <div class="is-card"><div class="is-val" style="color:var(--accent-text)">${sets}</div><div class="is-lbl">Sets</div></div>
+    <div class="is-card"><div class="is-val" style="color:var(--accent-text)">${fmtVol(Math.round(vol))}</div><div class="is-lbl">lbs</div></div>
+    <div class="is-card"><div class="is-val" style="color:var(--amber)">${cal>0?'~'+cal:'—'}</div><div class="is-lbl">Cal 🔥</div></div>
+    ${liftCal>0&&cardioCal>0?`
+      <div class="is-card"><div class="is-val" style="color:var(--amber);font-size:16px">${liftCal}</div><div class="is-lbl">Lift cal</div></div>
+      <div class="is-card"><div class="is-val" style="color:var(--accent-text);font-size:16px">${cardioCal}</div><div class="is-lbl">Cardio cal</div></div>
+    `:''}
   `;
   document.getElementById('insightAI').innerHTML = '<div class="dots"><span></span><span></span><span></span></div>';
   document.getElementById('insightOverlay').classList.add('open');
+  showSaveSplitUI(s);
 
-  // Fetch AI insight
   fetchInsight(s).then(text => {
     s.aiInsight = text.slice(0,200);
     save();
-    document.getElementById('insightAI').innerHTML = `<div style="font-size:14px;line-height:1.6;color:#ccc">${text.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>')}</div>`;
+    document.getElementById('insightAI').innerHTML = `<div style="font-size:14px;line-height:1.6;color:var(--text);opacity:0.8">${text.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>')}</div>`;
   }).catch(() => {
     document.getElementById('insightAI').textContent = 'Good session. Review your notes and push harder next time.';
   });
@@ -1433,7 +1901,9 @@ Give a 2-3 sentence post-workout insight: (1) one specific win from today's sess
 
 function closeInsight() {
   document.getElementById('insightOverlay').classList.remove('open');
+  _shareSession = null;
   exitLog();
+  setTimeout(() => loadWeeklyDigest(true), 400);
 }
 
 function exitLog() {
@@ -1465,9 +1935,15 @@ function renderStats() {
   const totalVol = ss.reduce((t,s)=>t+sVol(s),0);
   const totalSets = ss.reduce((t,s)=>t+sSets(s),0);
   const totalCal = ss.reduce((t,s)=>t+sessionCalories(s),0);
-  const cSess = ss.filter(s=>s.cardio&&s.cardio.type);
-  const totalCardioMin = cSess.reduce((t,s)=>t+(s.cardio.duration||0),0);
-  const totalMi = cSess.reduce((t,s)=>!s.cardio.distance?t:t+(s.cardio.unit==='km'?s.cardio.distance*0.621:s.cardio.distance),0);
+  const cSess = ss.filter(s => Array.isArray(s.cardio) && s.cardio.some(c => c.type));
+  const totalCardioMin = cSess.reduce((t,s) => {
+    const acts = Array.isArray(s.cardio) ? s.cardio : [];
+    return t + acts.reduce((at,c) => at + (c.durationMin||0), 0);
+  }, 0);
+  const totalMi = cSess.reduce((t,s) => {
+    const acts = Array.isArray(s.cardio) ? s.cardio : [];
+    return t + acts.reduce((at,c) => at + (c.distance||0), 0);
+  }, 0);
 
   const byType = {};
   ss.forEach(s=>{
@@ -1653,7 +2129,7 @@ function buildContext() {
     }
     const activities = Array.isArray(s.cardio) ? s.cardio : (s.cardio&&s.cardio.type ? [s.cardio] : []);
     activities.forEach(c => {
-      if (c.type) ctx += `  Cardio: ${c.type}${c.duration?' '+c.duration+'min':''}${c.distance?' '+c.distance+'mi':''}${c.pace?' @ '+c.pace+'/mi':''}\n`;
+      if (c.type) ctx += `  Cardio: ${c.type}${c.durationMin?' '+fmtDuration(c.durationMin):''}${c.distance?' '+c.distance+'mi':''}${c.pace?' @ '+c.pace+'/mi':''}\n`;
     });
     if (s.notes) ctx += `  Notes: ${s.notes}\n`;
     ctx += '\n';
@@ -1694,24 +2170,566 @@ async function askAI() {
 }
 
 // ══════════════════════════════════════════════════════
-// MODAL
+// AI WORKOUT GENERATOR
 // ══════════════════════════════════════════════════════
+
+function openAIGen(type) {
+  genConfig = { duration: '60', intensity: 'Moderate', runtype: 'Long Distance', focus: [] };
+  generatedWorkout = null;
+
+  document.getElementById('genTypeLabel').textContent = type;
+  document.getElementById('genStep1').style.display = 'block';
+  document.getElementById('genStep2').style.display = 'none';
+
+  // Show run sub-type only for Running
+  document.getElementById('runSubTypeWrap').style.display = type === 'Running' ? 'block' : 'none';
+
+  // Reset selections to defaults
+  document.querySelectorAll('[data-group="duration"]').forEach(el =>
+    el.classList.toggle('sel', el.dataset.val === '60'));
+  document.querySelectorAll('[data-group="intensity"]').forEach(el =>
+    el.classList.toggle('sel', el.dataset.val === 'Moderate'));
+  document.querySelectorAll('[data-group="runtype"]').forEach(el =>
+    el.classList.toggle('sel', el.dataset.val === 'Long Distance'));
+  document.querySelectorAll('#genFocusChips .cpill').forEach(el =>
+    el.classList.remove('sel'));
+
+  document.getElementById('aiGenOverlay').classList.add('open');
+}
+
+function closeAIGen() {
+  document.getElementById('aiGenOverlay').classList.remove('open');
+  generatedWorkout = null;
+}
+
+function selectGenOption(el, group) {
+  document.querySelectorAll(`[data-group="${group}"]`).forEach(e => e.classList.remove('sel'));
+  el.classList.add('sel');
+  genConfig[group] = el.dataset.val;
+}
+
+function toggleFocus(el) {
+  const f = el.dataset.focus;
+  el.classList.toggle('sel');
+  if (el.classList.contains('sel')) {
+    if (!genConfig.focus.includes(f)) genConfig.focus.push(f);
+  } else {
+    genConfig.focus = genConfig.focus.filter(x => x !== f);
+  }
+}
+
+async function generateWorkout(refineNote = '') {
+  // Show loading state
+  document.getElementById('genStep1').style.display = 'none';
+  document.getElementById('genStep2').style.display = 'block';
+  document.getElementById('genPreviewTitle').textContent = selectedType;
+  document.getElementById('genPreviewSub').textContent = 'Building your workout…';
+  document.getElementById('genCoachNote').style.display = 'none';
+  document.getElementById('genExerciseList').innerHTML =
+    '<div class="dots" style="justify-content:center;padding:30px 0"><span></span><span></span><span></span></div>';
+  const refineBox = document.getElementById('refineBox');
+  if (refineBox) refineBox.style.display = 'none';
+
+  const ctx = buildContext();
+  const focusNote = genConfig.focus.length > 0 ? `Focus areas: ${genConfig.focus.join(', ')}.` : '';
+  const isCardioWorkout = ['Rowing Machine','Running'].includes(selectedType);
+  const isStretchingWorkout = selectedType === 'Stretching';
+  const runtypeNote = selectedType === 'Running' ? `Run type: ${genConfig.runtype}.` : '';
+  const cardioNote = isStretchingWorkout
+    ? `This is a STRETCHING and MOBILITY session. Generate a sequence of stretches, holds, and mobility drills — no lifting, no cardio. Each "exercise" should be a specific stretch or mobility move with hold duration (e.g. "Hip Flexor Stretch", "Thoracic Rotation", "Pigeon Pose"). Focus on areas relevant to the athlete's training history.`
+    : isCardioWorkout
+    ? `This is a CARDIO session on the ${selectedType === 'Rowing Machine' ? 'rowing ergometer (erg)' : 'treadmill/track'}. Generate a structured cardio workout plan — intervals, pacing, distances, times. Do NOT generate weight lifting exercises. Each "exercise" should be a cardio interval or block (e.g. "2000m steady state", "8x500m intervals at 2:00/500m", "10 min warmup easy pace").`
+    : `This is a gym weightlifting session. Generate weight training exercises using dumbbells, cables, barbells, and machines. Do NOT generate cardio machine exercises.`;
+
+  // Custom prompt from step 1 field OR refine note passed in from step 2
+  const customFromStep1 = document.getElementById('genCustomPrompt')?.value?.trim() || '';
+  const customPrompt = refineNote || customFromStep1;
+  const customNote = customPrompt
+    ? `\n\nAdditional instructions from the athlete (follow these closely — they override general defaults): "${customPrompt}"`
+    : '';
+
+  const prompt = `Generate a ${genConfig.duration}-minute ${selectedType} workout at ${genConfig.intensity} intensity for this athlete.
+
+Athlete profile: 6'5", 237 lbs, 38 years old. Full gym access (dumbbells, cables, barbells, machines, rowing erg, treadmill).
+${focusNote} ${runtypeNote}
+${cardioNote}${customNote}
+
+Recent training history for context (avoid repeating muscle groups hit in the last 24-48 hours):
+${ctx}
+
+Respond ONLY with a valid JSON object, no markdown, no backticks, in this exact format:
+{
+  "coachNote": "2-3 sentence coaching note about this session — what to focus on, why this workout makes sense today",
+  "exercises": [
+    {
+      "name": "Exercise or Interval Name",
+      "type": "${isStretchingWorkout ? 'timed' : isCardioWorkout ? 'cardio' : 'db|bb|timed'}",
+      "sets": 3,
+      "reps": "${isStretchingWorkout ? 'hold duration e.g. 30s or 60s' : isCardioWorkout ? 'distance or duration e.g. 500m or 10 min' : '8-10'}",
+      "weight": "${isStretchingWorkout ? 'side if applicable e.g. Each side or Both' : isCardioWorkout ? 'pace or effort e.g. 2:05/500m or Zone 2' : 'weight in lbs'}",
+      "note": "Brief coaching cue"
+    }
+  ]
+}
+
+${isStretchingWorkout ? 'For stretching, use type "timed". Reps = hold time (e.g. "45s"). Weight = "Each side" or "Both" or leave blank.' : isCardioWorkout ? 'For cardio sessions, use type "cardio" for all exercises. Weight field = target pace or effort level.' : 'For timed exercises use type "timed" and put seconds in reps (e.g. "45s").'}
+Include ${isStretchingWorkout ? '8-12 stretches' : isCardioWorkout ? '4-6 cardio blocks' : '5-8 exercises'} appropriate for the workout type and duration.
+${isStretchingWorkout || isCardioWorkout ? '' : "Weight should reflect this athlete's actual strength level based on their history — be specific, not generic."}`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1500,
+        system: `You are an expert strength and conditioning coach. Always respond with valid JSON only — no markdown, no explanation, no backticks. Just the raw JSON object.`,
+        messages: [{ role: 'user', content: prompt }]
+      })
+    });
+    const result = await res.json();
+    const text = result.content?.find(b => b.type === 'text')?.text || '';
+    const clean = text.replace(/```json|```/g, '').trim();
+    const parsed = JSON.parse(clean);
+    generatedWorkout = parsed;
+    renderWorkoutPreview(parsed);
+  } catch(err) {
+    document.getElementById('genExerciseList').innerHTML =
+      `<div style="color:var(--red);padding:20px;text-align:center;font-size:13px">Failed to generate workout.<br>${err.message}<br><br>Check your connection and try again.</div>`;
+    document.getElementById('genPreviewSub').textContent = 'Generation failed';
+  } finally {
+    if (refineBox) {
+      refineBox.style.display = 'block';
+      const refineInput = document.getElementById('genRefinePrompt');
+      if (refineInput && refineNote) refineInput.value = '';
+    }
+  }
+}
+
+function refineWorkout() {
+  const note = document.getElementById('genRefinePrompt')?.value?.trim();
+  if (!note) return;
+  generateWorkout(note);
+}
+
+function renderWorkoutPreview(workout) {
+  document.getElementById('genPreviewSub').textContent =
+    `${genConfig.intensity} · ${genConfig.duration} min · ${workout.exercises.length} exercises`;
+
+  if (workout.coachNote) {
+    document.getElementById('genCoachText').textContent = workout.coachNote;
+    document.getElementById('genCoachNote').style.display = 'block';
+  }
+
+  document.getElementById('genExerciseList').innerHTML = workout.exercises.map((ex, i) => `
+    <div class="gen-preview-ex" id="gpe-${i}">
+      <div class="gpe-num">${i + 1}</div>
+      <div class="gpe-body">
+        <div class="gpe-name">${ex.name}</div>
+        <div class="gpe-sets">${ex.sets} sets · ${ex.reps}${ex.weight ? ' · ' + ex.weight + ' lbs' : ''}</div>
+        ${ex.note ? `<div class="gpe-note">${ex.note}</div>` : ''}
+        <div class="gpe-type">${ex.type}</div>
+      </div>
+      <button class="gpe-remove" onclick="removeGenExercise(${i})" title="Remove">✕</button>
+    </div>`).join('');
+}
+
+function removeGenExercise(index) {
+  if (!generatedWorkout) return;
+  generatedWorkout.exercises.splice(index, 1);
+  renderWorkoutPreview(generatedWorkout);
+}
+
+function regenerateWorkout() {
+  document.getElementById('genStep1').style.display = 'block';
+  document.getElementById('genStep2').style.display = 'none';
+  generatedWorkout = null;
+}
+
+function startGeneratedWorkout() {
+  if (!generatedWorkout || !generatedWorkout.exercises.length) return;
+  const date = document.getElementById('qsDate').value || todayStr();
+
+  // Convert AI exercises to session format
+  const exercises = generatedWorkout.exercises
+    .filter(ex => ex.type !== 'cardio')
+    .map(ex => {
+      const typ = ex.type === 'timed' ? 'timed' : ex.type === 'db' ? 'db' : 'bb';
+      // Pre-populate sets from AI suggestion
+      const sets = [];
+      const weight = ex.weight ? parseFloat(ex.weight) : null;
+      for (let i = 0; i < (ex.sets || 3); i++) {
+        if (typ === 'timed') sets.push({ w: weight, t: null });
+        else sets.push({ w: weight, r: null });
+      }
+      return { id: uid(), name: ex.name, exType: typ, sets, aiNote: ex.note || '' };
+    });
+
+  // Handle cardio activities
+  const cardioActs = generatedWorkout.exercises
+    .filter(ex => ex.type === 'cardio')
+    .map(ex => ({
+      id: uid(),
+      type: selectedType === 'Running' ? 'Run' : selectedType === 'Rowing Machine' ? 'Rowing' : 'Walk',
+      notes: `${ex.name}: ${ex.reps}${ex.note ? ' — ' + ex.note : ''}`
+    }));
+
+  const session = {
+    id: 's' + Date.now(),
+    type: selectedType,
+    date,
+    notes: generatedWorkout.coachNote || '',
+    exercises,
+    cardio: cardioActs,
+    aiGenerated: true
+  };
+
+  data.sessions.push(session);
+  save();
+  closeAIGen();
+  openLog(session.id);
+}
+
+// ══════════════════════════════════════════════════════
+// SAVE TO MY SPLIT
+// ══════════════════════════════════════════════════════
+
+let _insightSessionId = null;
+
+function showSaveSplitUI(session) {
+  const box = document.getElementById('saveSplitBox');
+  const done = document.getElementById('saveSplitDone');
+  const btn = document.getElementById('saveSplitBtn');
+  const input = document.getElementById('saveSplitName');
+
+  if (!session || !session.aiGenerated) { box.style.display = 'none'; return; }
+
+  input.value = session.type;
+  btn.disabled = false;
+  done.style.display = 'none';
+  box.style.display = 'block';
+  _insightSessionId = session.id;
+}
+
+function saveToSplit() {
+  const name = document.getElementById('saveSplitName').value.trim();
+  if (!name) return;
+  const session = data.sessions.find(s => s.id === _insightSessionId);
+  if (!session) return;
+
+  const template = {
+    id: 'cs_' + Date.now(),
+    name,
+    icon: getCustomSplitIcon(session.type),
+    sourceType: session.type,
+    exercises: session.exercises.map(ex => ({
+      name: ex.name,
+      exType: ex.exType || getExType(ex.name),
+      defaultSets: Math.max(ex.sets.length, 3),
+      defaultWeight: ex.sets.length > 0 ? (ex.sets[0].w || null) : null,
+    })),
+    createdAt: todayStr(),
+  };
+
+  if (!data.customSplits) data.customSplits = [];
+  const existing = data.customSplits.findIndex(s => s.name === name);
+  if (existing >= 0) data.customSplits[existing] = template;
+  else data.customSplits.push(template);
+
+  save();
+  document.getElementById('saveSplitBtn').disabled = true;
+  document.getElementById('saveSplitDone').style.display = 'block';
+}
+
+function getCustomSplitIcon(type) {
+  const map = { 'Full Body':'⚡','Body Weight':'🤸','Abdominals':'🔥','Rowing Machine':'🚣','Running':'👟','Upper Body':'💪','Active Recovery':'🧘','Stretching':'🙆','HIIT':'⏱' };
+  return map[type] || '🏋️';
+}
+
+function deleteCustomSplit(id) {
+  if (!confirm('Remove this workout from Your Split?')) return;
+  data.customSplits = (data.customSplits || []).filter(s => s.id !== id);
+  save(); renderToday();
+}
+
+function startCustomSplit(splitId) {
+  const split = (data.customSplits || []).find(s => s.id === splitId);
+  if (!split) return;
+  const date = document.getElementById('qsDate').value || todayStr();
+  const session = {
+    id: 's' + Date.now(), type: split.name, date, notes: '',
+    exercises: split.exercises.map(ex => {
+      const sets = [];
+      for (let i = 0; i < ex.defaultSets; i++) {
+        sets.push(ex.exType === 'timed' ? { w: ex.defaultWeight, t: null } : { w: ex.defaultWeight, r: null });
+      }
+      return { id: uid(), name: ex.name, exType: ex.exType, sets };
+    }),
+    cardio: [],
+  };
+  data.sessions.push(session); save();
+  openLog(session.id);
+}
+
 function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); }
 function createFromModal() {
   const type = document.getElementById('modalType').value;
   const date = document.getElementById('modalDate').value || todayStr();
   const session = { id:'s'+Date.now(), type, date, notes:'',
-    exercises:(TEMPLATES[type]||[]).map(name=>({id:uid(),name,sets:[]})), cardio:{} };
+    exercises:(TEMPLATES[type]||[]).map(name=>({id:uid(),name,sets:[]})), cardio:[] };
   data.sessions.push(session); save();
   closeModal(); openLog(session.id);
 }
 
 // ══════════════════════════════════════════════════════
+// WEEKLY DIGEST
+// ══════════════════════════════════════════════════════
+
+function getWeekSessions() {
+  const now = new Date();
+  const day = now.getDay(); // 0=Sun
+  const monday = new Date(now);
+  monday.setDate(now.getDate() - (day === 0 ? 6 : day - 1));
+  monday.setHours(0,0,0,0);
+  const weekStr = monday.toISOString().split('T')[0];
+  return data.sessions.filter(s => s.date >= weekStr);
+}
+
+function fmtWeekRange() {
+  const now = new Date();
+  const day = now.getDay();
+  const monday = new Date(now);
+  monday.setDate(now.getDate() - (day === 0 ? 6 : day - 1));
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const end = new Date(monday); end.setDate(monday.getDate() + 6);
+  return `${months[monday.getMonth()]} ${monday.getDate()} – ${months[end.getMonth()]} ${end.getDate()}`;
+}
+
+async function loadWeeklyDigest(forceRefresh = false) {
+  const weekSessions = getWeekSessions();
+  const digestEl = document.getElementById('weeklyDigest');
+  const bodyEl = document.getElementById('digestBody');
+  if (!digestEl) return;
+
+  // Show digest if we have sessions this week or it's Sunday
+  const isSunday = new Date().getDay() === 0;
+  if (weekSessions.length === 0 && !isSunday) { digestEl.style.display = 'none'; return; }
+  digestEl.style.display = 'block';
+  document.getElementById('digestDateRange').textContent = fmtWeekRange();
+
+  // Use cached digest if available and not forcing refresh
+  const cacheKey = 'digest_' + fmtWeekRange().replace(/\s/g,'');
+  if (!forceRefresh && data.digestCache && data.digestCache[cacheKey]) {
+    renderDigest(data.digestCache[cacheKey], weekSessions);
+    return;
+  }
+
+  bodyEl.innerHTML = '<div class="digest-loading"><div class="dots"><span></span><span></span><span></span></div> Building your week…</div>';
+
+  // Compute stats
+  const totalVol = weekSessions.reduce((t,s) => t + sVol(s), 0);
+  const totalSets = weekSessions.reduce((t,s) => t + sSets(s), 0);
+  const totalCal = weekSessions.reduce((t,s) => t + sessionCalories(s), 0);
+  const totalMi = weekSessions.reduce((t,s) => {
+    const acts = Array.isArray(s.cardio) ? s.cardio : [];
+    return t + acts.reduce((at,c) => at + (c.distance||0), 0);
+  }, 0);
+
+  // Build AI insight
+  const ctx = buildContext();
+  const statsStr = `This week: ${weekSessions.length} sessions, ${totalSets} sets, ${fmtVol(Math.round(totalVol))} lbs volume, ~${totalCal} calories, ${totalMi.toFixed(1)} miles cardio.`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 400,
+        system: `You are a concise strength coach giving a weekly training summary. Respond ONLY with a JSON object in this exact format, no markdown:
+{"win":"One specific achievement from this week (1 sentence, reference actual numbers)","focus":"One specific thing to prioritize next week (1 sentence, be concrete)","insight":"One observation about training patterns or recovery (1-2 sentences)"}`,
+        messages: [{ role: 'user', content: `${statsStr}\n\nFull training history:\n${ctx}\n\nGive me my weekly digest.` }]
+      })
+    });
+    const result = await res.json();
+    const text = result.content?.find(b => b.type==='text')?.text || '{}';
+    const parsed = JSON.parse(text.replace(/```json|```/g,'').trim());
+    const digestData = { stats: { sessions: weekSessions.length, vol: totalVol, cal: totalCal, mi: totalMi }, ...parsed };
+
+    // Cache it
+    if (!data.digestCache) data.digestCache = {};
+    data.digestCache[cacheKey] = digestData;
+    save();
+    renderDigest(digestData, weekSessions);
+  } catch(e) {
+    bodyEl.innerHTML = `<div style="font-size:13px;color:var(--t2)">${statsStr}</div>`;
+  }
+}
+
+function renderDigest(d, weekSessions) {
+  const bodyEl = document.getElementById('digestBody');
+  if (!bodyEl) return;
+  const totalVol = d.stats?.vol || weekSessions.reduce((t,s)=>t+sVol(s),0);
+  const totalCal = d.stats?.cal || weekSessions.reduce((t,s)=>t+sessionCalories(s),0);
+  const totalMi = d.stats?.mi || 0;
+  bodyEl.innerHTML = `
+    <div class="digest-stats">
+      <div class="ds-item"><div class="ds-val">${weekSessions.length}</div><div class="ds-lbl">Sessions</div></div>
+      <div class="ds-item"><div class="ds-val">${totalVol>=1000?(totalVol/1000).toFixed(1)+'K':totalVol>0?totalVol:'—'}</div><div class="ds-lbl">lbs</div></div>
+      <div class="ds-item"><div class="ds-val" style="color:var(--amber)">${totalCal>0?'~'+totalCal:'—'}</div><div class="ds-lbl">Cal 🔥</div></div>
+      <div class="ds-item"><div class="ds-val">${totalMi>0?totalMi.toFixed(1):'—'}</div><div class="ds-lbl">Miles</div></div>
+    </div>
+    ${d.win ? `<div class="digest-win"><div class="digest-win-label">✓ This week's win</div>${d.win}</div>` : ''}
+    ${d.focus ? `<div class="digest-win" style="background:var(--amber-dim);border-color:rgba(201,138,62,0.2)"><div class="digest-win-label" style="color:var(--amber)">→ Next week focus</div><span style="color:var(--text);opacity:0.8">${d.focus}</span></div>` : ''}
+    ${d.insight ? `<div class="digest-insight">${d.insight}</div>` : ''}
+  `;
+}
+
+// ══════════════════════════════════════════════════════
+// SHARE SESSION
+// ══════════════════════════════════════════════════════
+
+let _shareSession = null;
+
+function shareSession() {
+  const s = _shareSession || data.sessions.find(x => x.id === activeId);
+  if (!s) return;
+
+  const canvas = document.getElementById('shareCanvas');
+  const W = 1080, H = 1350;
+  canvas.width = W; canvas.height = H;
+  const ctx = canvas.getContext('2d');
+  const isDarkMode = document.documentElement.getAttribute('data-theme') !== 'light';
+
+  // Background
+  ctx.fillStyle = isDarkMode ? '#0e0f0f' : '#ffffff';
+  ctx.fillRect(0, 0, W, H);
+
+  // Top accent bar
+  ctx.fillStyle = '#4a7c6f';
+  ctx.fillRect(0, 0, W, 8);
+
+  // App name
+  ctx.fillStyle = isDarkMode ? '#7dbfae' : '#1e5244';
+  ctx.font = '700 36px "Arial", sans-serif';
+  ctx.fillText('TRAIN', 64, 80);
+
+  // Date
+  ctx.fillStyle = isDarkMode ? '#7a8282' : '#5a6262';
+  ctx.font = '400 28px "Arial", sans-serif';
+  ctx.fillText(fmtDate(s.date), 64, 120);
+
+  // Workout type — big
+  ctx.fillStyle = isDarkMode ? '#e8eaea' : '#111414';
+  ctx.font = '800 72px "Arial", sans-serif';
+  const title = s.type.toUpperCase();
+  ctx.fillText(title, 64, 220);
+
+  // Divider
+  ctx.fillStyle = isDarkMode ? '#2a2d2d' : '#e0e2e2';
+  ctx.fillRect(64, 248, W - 128, 2);
+
+  // Stats row
+  const vol = sVol(s), sets = sSets(s), cal = sessionCalories(s);
+  const stats = [
+    { val: sets.toString(), lbl: 'SETS' },
+    { val: fmtVol(Math.round(vol)), lbl: 'LBS' },
+    { val: cal > 0 ? '~'+cal : '—', lbl: 'CAL' },
+  ];
+  const colW = (W - 128) / 3;
+  stats.forEach((st, i) => {
+    const x = 64 + i * colW + colW / 2;
+    ctx.fillStyle = isDarkMode ? '#7dbfae' : '#1e5244';
+    ctx.font = '800 64px "Arial", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(st.val, x, 360);
+    ctx.fillStyle = isDarkMode ? '#4a5252' : '#b0b8b8';
+    ctx.font = '700 22px "Arial", sans-serif';
+    ctx.fillText(st.lbl, x, 396);
+  });
+  ctx.textAlign = 'left';
+
+  // Divider
+  ctx.fillStyle = isDarkMode ? '#2a2d2d' : '#e0e2e2';
+  ctx.fillRect(64, 424, W - 128, 2);
+
+  // Exercises list
+  ctx.fillStyle = isDarkMode ? '#4a5252' : '#b0b8b8';
+  ctx.font = '700 22px "Arial", sans-serif';
+  ctx.fillText('EXERCISES', 64, 468);
+
+  const exList = s.exercises.filter(e => e.sets.length > 0).slice(0, 8);
+  exList.forEach((ex, i) => {
+    const y = 510 + i * 80;
+    const typ = ex.exType || getExType(ex.name);
+    const topSet = ex.sets.reduce((best, set) => {
+      const v = exSetVol(set, typ);
+      return v > exSetVol(best, typ) ? set : best;
+    }, ex.sets[0]);
+    const setStr = typ === 'timed'
+      ? `${ex.sets.length} sets · ${topSet.w||'?'}lbs × ${topSet.t||'?'}s`
+      : `${ex.sets.length} sets · ${topSet.w||'?'}${typ==='db'?' (DB)':''} × ${topSet.r||'?'} reps`;
+
+    ctx.fillStyle = isDarkMode ? '#e8eaea' : '#111414';
+    ctx.font = '600 30px "Arial", sans-serif';
+    ctx.fillText(ex.name, 64, y);
+    ctx.fillStyle = isDarkMode ? '#7a8282' : '#5a6262';
+    ctx.font = '400 24px "Arial", sans-serif';
+    ctx.fillText(setStr, 64, y + 32);
+  });
+
+  // Cardio if any
+  const acts = Array.isArray(s.cardio) ? s.cardio.filter(c=>c.type) : [];
+  if (acts.length > 0) {
+    const cardioY = 510 + exList.length * 80 + 20;
+    ctx.fillStyle = isDarkMode ? '#2a2d2d' : '#e0e2e2';
+    ctx.fillRect(64, cardioY, W - 128, 2);
+    acts.forEach((c, i) => {
+      const y = cardioY + 40 + i * 60;
+      ctx.fillStyle = isDarkMode ? '#7dbfae' : '#1e5244';
+      ctx.font = '600 26px "Arial", sans-serif';
+      const cardioStr = `🏃 ${c.type}${c.distance?' · '+c.distance+'mi':''}${c.durationMin?' · '+fmtDuration(c.durationMin):''}${c.pace?' @ '+c.pace+'/mi':''}`;
+      ctx.fillText(cardioStr, 64, y);
+    });
+  }
+
+  // Bottom watermark
+  ctx.fillStyle = isDarkMode ? '#2a2d2d' : '#e0e2e2';
+  ctx.font = '400 22px "Arial", sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('Logged with Train App', W/2, H - 48);
+  ctx.textAlign = 'left';
+
+  // Share or download
+  canvas.toBlob(blob => {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${s.type.replace(/\s+/g,'-')}-${s.date}.png`;
+    a.click();
+    URL.revokeObjectURL(url);
+
+    // On iOS/mobile, also try Web Share API
+    if (navigator.share && navigator.canShare) {
+      const file = new File([blob], a.download, { type: 'image/png' });
+      if (navigator.canShare({ files: [file] })) {
+        navigator.share({ files: [file], title: `${s.type} — ${fmtDate(s.date)}` }).catch(()=>{});
+      }
+    }
+  }, 'image/png');
+}
+
+// ══════════════════════════════════════════════════════
 // INIT
 // ══════════════════════════════════════════════════════
-seed();
-renderToday();
-renderAIChips();
+(async () => {
+  await initData();
+  seed();
+  renderToday();
+  renderAIChips();
+  // Load weekly digest after a short delay so page renders first
+  setTimeout(() => loadWeeklyDigest(), 800);
+})();
 </script>
 </body>
 </html>
