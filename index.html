@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Train</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap');
 
@@ -957,7 +958,14 @@ function save() {
   if (SUPABASE_ENABLED) supabaseSave();
 }
 
-// ── Supabase sync (inactive until you fill in config) ──
+// ── Supabase client (handles both legacy anon keys and new publishable keys) ──
+function getSupabaseClient() {
+  if (!SUPABASE_URL || !SUPABASE_KEY) return null;
+  // Use supabase-js if available, otherwise fall back to raw fetch
+  if (window.supabase) return window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  return null;
+}
+
 function sbHeaders(extra = {}) {
   return {
     'Content-Type': 'application/json',
@@ -970,36 +978,51 @@ function sbHeaders(extra = {}) {
 async function supabaseSave() {
   if (!SUPABASE_URL || !SUPABASE_KEY) return;
   try {
+    // Try supabase-js client first (handles new key format)
+    const client = getSupabaseClient();
+    if (client) {
+      await client.from('train_data').delete().eq('user_id', SUPABASE_USER);
+      const { error } = await client.from('train_data').insert({
+        user_id: SUPABASE_USER,
+        payload: data,
+        updated_at: new Date().toISOString()
+      });
+      if (error) throw error;
+      console.log('✓ Saved to Supabase');
+      return;
+    }
+    // Fall back to raw fetch
     await fetch(`${SUPABASE_URL}/rest/v1/train_data?user_id=eq.${SUPABASE_USER}`, {
-      method: 'DELETE',
-      headers: sbHeaders()
+      method: 'DELETE', headers: sbHeaders()
     });
     await fetch(`${SUPABASE_URL}/rest/v1/train_data`, {
       method: 'POST',
       headers: sbHeaders({ 'Prefer': 'return=minimal' }),
-      body: JSON.stringify({
-        user_id: SUPABASE_USER,
-        payload: data,
-        updated_at: new Date().toISOString()
-      })
+      body: JSON.stringify({ user_id: SUPABASE_USER, payload: data, updated_at: new Date().toISOString() })
     });
-    console.log('✓ Saved to Supabase');
+    console.log('✓ Saved to Supabase (fetch)');
   } catch(e) { console.warn('Supabase sync failed:', e); }
 }
 
 async function supabaseLoad() {
   if (!SUPABASE_ENABLED || !SUPABASE_URL || !SUPABASE_KEY) return null;
   try {
+    const client = getSupabaseClient();
+    if (client) {
+      const { data: rows, error } = await client
+        .from('train_data').select('payload').eq('user_id', SUPABASE_USER).limit(1);
+      if (error) throw error;
+      if (rows && rows.length > 0) { console.log('✓ Loaded from Supabase'); return rows[0].payload; }
+      return null;
+    }
+    // Fall back to raw fetch
     const res = await fetch(
       `${SUPABASE_URL}/rest/v1/train_data?user_id=eq.${SUPABASE_USER}&select=payload&limit=1`,
       { headers: sbHeaders() }
     );
     if (!res.ok) { console.warn('Supabase load error:', res.status); return null; }
     const rows = await res.json();
-    if (rows && rows.length > 0 && rows[0].payload) {
-      console.log('✓ Loaded from Supabase');
-      return rows[0].payload;
-    }
+    if (rows && rows.length > 0 && rows[0].payload) { console.log('✓ Loaded from Supabase'); return rows[0].payload; }
   } catch(e) { console.warn('Supabase load failed:', e); }
   return null;
 }
